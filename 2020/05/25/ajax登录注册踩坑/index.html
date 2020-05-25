@@ -20,21 +20,19 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="应用场景今天在做web系统开发的期末大作业的时候，遇到了一个应用场景。我在网站首页中使用iframe引入了一个子页面，而且这个子页面的内容要随着我点击header中相应的栏目来改变，也就是动态修改iframe的src属性。那么问题来了，变动的src中的内容高度不是一样的，有的很高，有的不是。那么，我如何做到iframe的高度和src指向的页面的内容高度一致呢？换句话说：如何做到iframe的高度的">
+  <meta name="description" content="今天看了cookie和session的视频，想自己来试一试，于是便做了一个登录注册和验证的demo。后端使用的是php，前端三驾马车使用ajax传输数据。主要遇到了两个坑： 一、sql查询如下的查询语句： 1$query &#x3D; &quot;INSERT INTO user (Username,Password,Addtime) VALUES (&#39;&amp;#123;$_POST[&amp;quot">
 <meta property="og:type" content="article">
-<meta property="og:title" content="父页面访问子页面内容">
-<meta property="og:url" content="http://yoursite.com/2020/04/27/%E7%88%B6%E9%A1%B5%E9%9D%A2%E8%AE%BF%E9%97%AE%E5%AD%90%E9%A1%B5%E9%9D%A2%E5%86%85%E5%AE%B9/index.html">
+<meta property="og:title" content="ajax登录注册踩坑">
+<meta property="og:url" content="http://yoursite.com/2020/05/25/ajax%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E8%B8%A9%E5%9D%91/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="应用场景今天在做web系统开发的期末大作业的时候，遇到了一个应用场景。我在网站首页中使用iframe引入了一个子页面，而且这个子页面的内容要随着我点击header中相应的栏目来改变，也就是动态修改iframe的src属性。那么问题来了，变动的src中的内容高度不是一样的，有的很高，有的不是。那么，我如何做到iframe的高度和src指向的页面的内容高度一致呢？换句话说：如何做到iframe的高度的">
+<meta property="og:description" content="今天看了cookie和session的视频，想自己来试一试，于是便做了一个登录注册和验证的demo。后端使用的是php，前端三驾马车使用ajax传输数据。主要遇到了两个坑： 一、sql查询如下的查询语句： 1$query &#x3D; &quot;INSERT INTO user (Username,Password,Addtime) VALUES (&#39;&amp;#123;$_POST[&amp;quot">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/img/err.jpg">
-<meta property="article:published_time" content="2020-04-27T12:34:29.000Z">
-<meta property="article:modified_time" content="2020-04-27T13:02:41.424Z">
+<meta property="article:published_time" content="2020-05-25T13:02:08.000Z">
+<meta property="article:modified_time" content="2020-05-25T13:19:50.942Z">
 <meta property="article:author" content="Luffy">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/img/err.jpg">
 
-<link rel="canonical" href="http://yoursite.com/2020/04/27/%E7%88%B6%E9%A1%B5%E9%9D%A2%E8%AE%BF%E9%97%AE%E5%AD%90%E9%A1%B5%E9%9D%A2%E5%86%85%E5%AE%B9/">
+<link rel="canonical" href="http://yoursite.com/2020/05/25/ajax%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E8%B8%A9%E5%9D%91/">
 
 
 <script id="page-configurations">
@@ -47,7 +45,7 @@
   };
 </script>
 
-  <title>父页面访问子页面内容 | Hexo</title>
+  <title>ajax登录注册踩坑 | Hexo</title>
   
 
 
@@ -191,7 +189,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/27/%E7%88%B6%E9%A1%B5%E9%9D%A2%E8%AE%BF%E9%97%AE%E5%AD%90%E9%A1%B5%E9%9D%A2%E5%86%85%E5%AE%B9/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/25/ajax%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E8%B8%A9%E5%9D%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -204,7 +202,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          父页面访问子页面内容
+          ajax登录注册踩坑
         </h1>
 
         <div class="post-meta">
@@ -215,7 +213,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-04-27 20:34:29 / Modified: 21:02:41" itemprop="dateCreated datePublished" datetime="2020-04-27T20:34:29+08:00">2020-04-27</time>
+              <time title="Created: 2020-05-25 21:02:08 / Modified: 21:19:50" itemprop="dateCreated datePublished" datetime="2020-05-25T21:02:08+08:00">2020-05-25</time>
             </span>
 
           
@@ -229,13 +227,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>今天在做web系统开发的期末大作业的时候，遇到了一个应用场景。<br><br>我在网站首页中使用iframe引入了一个子页面，而且这个子页面的内容要随着我点击header中相应的栏目来改变，也就是动态修改iframe的src属性。<br><br>那么问题来了，变动的src中的内容高度不是一样的，有的很高，有的不是。那么，我如何做到iframe的高度和src指向的页面的内容高度一致呢？换句话说：如何做到iframe的高度的自适应？</p>
-<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>通过在网上查找，我发现了一种解决方案。<br><br>可以在父页面获取到iframe元素，然后设置它的高度为iframe的contentDocument对象的document.scrollHeight。<br><br>也就是下面的代码：<br></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iframe.height &#x3D; iframe.contentDocument.document.scrollHeight;</span><br></pre></td></tr></table></figure>
-<p>原以为过程应该很顺利，但是没想到浏览器报错了。<br><br><img src="/img/err.jpg" alt="错误"><br>经过调试，发现错误是从这里开始的：<br></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(iframe.contentDocument);&#x2F;&#x2F;输出null！</span><br></pre></td></tr></table></figure>
-<p>于是，我又在网上找原因，最后得到的结果是：</p>
-<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><h5 id="chrome因为跨域的问题，contentDocument-document是处于deny状态的，没有办法获取到！（基于chromium内核的浏览器都一个样）"><a href="#chrome因为跨域的问题，contentDocument-document是处于deny状态的，没有办法获取到！（基于chromium内核的浏览器都一个样）" class="headerlink" title="chrome因为跨域的问题，contentDocument.document是处于deny状态的，没有办法获取到！（基于chromium内核的浏览器都一个样）"></a>chrome因为跨域的问题，contentDocument.document是处于deny状态的，没有办法获取到！（基于chromium内核的浏览器都一个样）<br></h5><h5 id="可以通过跨域操作解决，但是网站必须在线上，或者开启一个服务，也就是说本地纯html-css-js是无法解决的！"><a href="#可以通过跨域操作解决，但是网站必须在线上，或者开启一个服务，也就是说本地纯html-css-js是无法解决的！" class="headerlink" title="可以通过跨域操作解决，但是网站必须在线上，或者开启一个服务，也就是说本地纯html+css+js是无法解决的！"></a>可以通过跨域操作解决，但是网站必须在线上，或者开启一个服务，也就是说本地纯html+css+js是无法解决的！</h5>
+        <p>今天看了cookie和session的视频，想自己来试一试，于是便做了一个登录注册和验证的demo。后端使用的是php，前端三驾马车使用ajax传输数据。主要遇到了两个坑：</p>
+<h1 id="一、sql查询"><a href="#一、sql查询" class="headerlink" title="一、sql查询"></a>一、sql查询</h1><p>如下的查询语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$query &#x3D; &quot;INSERT INTO user (Username,Password,Addtime) VALUES (&#39;&#123;$_POST[&quot;user&quot;]&#125;&#39;,&#39;&#123;$_POST[&quot;pswd&quot;]&#125;&#39;,&#39;&#123;$date&#125;&#39;);&quot;;</span><br></pre></td></tr></table></figure>
+<p>这里要特别注意两个点：</p>
+<h2 id="1、引号"><a href="#1、引号" class="headerlink" title="1、引号"></a>1、引号</h2><p>指明表的字段名的时候，绝对！不能！用单引号引起来，不然会报sql语法错误！</p>
+<h2 id="2、还是引号"><a href="#2、还是引号" class="headerlink" title="2、还是引号"></a>2、还是引号</h2><p>指明各字段的值的时候，绝对！要！用单引号引起来，不管数据库里面是什么类型的（int、varchar。。。），一律都要用单引号引起来！</p>
+<h1 id="二、使用post方式的ajax"><a href="#二、使用post方式的ajax" class="headerlink" title="二、使用post方式的ajax"></a>二、使用post方式的ajax</h1><p>我们使用get方式的时候，直接这样就可以了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.open(&quot;get&quot;,&quot;.&#x2F;validate.php&quot;,true);</span><br><span class="line">xmlhttp.send();</span><br><span class="line">xmlhttp.onreadystatechange &#x3D; function()&#123;</span><br><span class="line">            if(this.readyState &#x3D;&#x3D; 4 &amp;&amp; this.status &#x3D;&#x3D; 200)&#123;</span><br><span class="line">                var obj &#x3D; JSON.parse(this.responseText);</span><br><span class="line">                alert(obj.user+&quot;你好，注册成功！&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br></pre></td></tr></table></figure>
+<p>但是如果使用的是post方式的ajax，那么必须指明请求头：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var xmlhttp &#x3D; new XMLHttpRequest();</span><br><span class="line">       xmlhttp.open(&quot;get&quot;,&quot;.&#x2F;validate.php&quot;,true);</span><br><span class="line"></span><br><span class="line">       xmlhttp.setRequestHeader(&#39;content-type&#39;,&#39;application&#x2F;x-www-form-urlencoded&#39;);</span><br><span class="line">       </span><br><span class="line">       xmlhttp.send(&quot;type&#x3D;signin&amp;user&#x3D;&quot;+uv+&quot;&amp;pswd&#x3D;&quot;+pv);</span><br><span class="line"></span><br><span class="line">       xmlhttp.onreadystatechange &#x3D; function()&#123;</span><br><span class="line">           if(this.readyState &#x3D;&#x3D; 4 &amp;&amp; this.status &#x3D;&#x3D; 200)&#123;</span><br><span class="line">               var obj &#x3D; JSON.parse(this.responseText);</span><br><span class="line">               alert(obj.user+&quot;你好，注册成功！&quot;);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;;</span><br></pre></td></tr></table></figure>
+<p><b>也就是代码中的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.setRequestHeader(&#39;content-type&#39;,&#39;application&#x2F;x-www-form-urlencoded&#39;);</span><br></pre></td></tr></table></figure>
+<p>不然的话，会一直提示$_POST数组的下标不存在！<br></b></p>
+
     </div>
 
     
@@ -250,13 +255,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/04/17/hello-world/" rel="prev" title="Hello World">
-      <i class="fa fa-chevron-left"></i> Hello World
+    <a href="/2020/05/24/servlet%E5%AE%9E%E7%8E%B0%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/" rel="prev" title="servlet实现的三种方式">
+      <i class="fa fa-chevron-left"></i> servlet实现的三种方式
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/05/24/servlet%E4%B9%8B%E7%BD%91%E7%AB%99%E8%AE%BF%E9%97%AE%E9%87%8F%E7%BB%9F%E8%AE%A1/" rel="next" title="servlet之网站访问量统计">
-      servlet之网站访问量统计 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -315,8 +317,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#应用场景"><span class="nav-number">1.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过程"><span class="nav-number">2.</span> <span class="nav-text">过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结果"><span class="nav-number">3.</span> <span class="nav-text">结果</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#chrome因为跨域的问题，contentDocument-document是处于deny状态的，没有办法获取到！（基于chromium内核的浏览器都一个样）"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">chrome因为跨域的问题，contentDocument.document是处于deny状态的，没有办法获取到！（基于chromium内核的浏览器都一个样）
-</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#可以通过跨域操作解决，但是网站必须在线上，或者开启一个服务，也就是说本地纯html-css-js是无法解决的！"><span class="nav-number">3.0.0.2.</span> <span class="nav-text">可以通过跨域操作解决，但是网站必须在线上，或者开启一个服务，也就是说本地纯html+css+js是无法解决的！</span></a></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、sql查询"><span class="nav-number">1.</span> <span class="nav-text">一、sql查询</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、引号"><span class="nav-number">1.1.</span> <span class="nav-text">1、引号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、还是引号"><span class="nav-number">1.2.</span> <span class="nav-text">2、还是引号</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、使用post方式的ajax"><span class="nav-number">2.</span> <span class="nav-text">二、使用post方式的ajax</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

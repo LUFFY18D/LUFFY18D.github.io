@@ -92,4 +92,22 @@
 <h1 id="三、继承HttpServlet类"><a href="#三、继承HttpServlet类" class="headerlink" title="三、继承HttpServlet类"></a>三、继承HttpServlet类</h1><p>抽象类所在包：javax.servlet.http.HttpServlet<br>只需要实现doGet方法和doPost方法，实现实例参考上一篇博客。</p>
 ]]></content>
   </entry>
+  <entry>
+    <title>ajax登录注册踩坑</title>
+    <url>/2020/05/25/ajax%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E8%B8%A9%E5%9D%91/</url>
+    <content><![CDATA[<p>今天看了cookie和session的视频，想自己来试一试，于是便做了一个登录注册和验证的demo。后端使用的是php，前端三驾马车使用ajax传输数据。主要遇到了两个坑：</p>
+<h1 id="一、sql查询"><a href="#一、sql查询" class="headerlink" title="一、sql查询"></a>一、sql查询</h1><p>如下的查询语句：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$query &#x3D; &quot;INSERT INTO user (Username,Password,Addtime) VALUES (&#39;&#123;$_POST[&quot;user&quot;]&#125;&#39;,&#39;&#123;$_POST[&quot;pswd&quot;]&#125;&#39;,&#39;&#123;$date&#125;&#39;);&quot;;</span><br></pre></td></tr></table></figure>
+<p>这里要特别注意两个点：</p>
+<h2 id="1、引号"><a href="#1、引号" class="headerlink" title="1、引号"></a>1、引号</h2><p>指明表的字段名的时候，绝对！不能！用单引号引起来，不然会报sql语法错误！</p>
+<h2 id="2、还是引号"><a href="#2、还是引号" class="headerlink" title="2、还是引号"></a>2、还是引号</h2><p>指明各字段的值的时候，绝对！要！用单引号引起来，不管数据库里面是什么类型的（int、varchar。。。），一律都要用单引号引起来！</p>
+<h1 id="二、使用post方式的ajax"><a href="#二、使用post方式的ajax" class="headerlink" title="二、使用post方式的ajax"></a>二、使用post方式的ajax</h1><p>我们使用get方式的时候，直接这样就可以了：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">xmlhttp.open(&quot;get&quot;,&quot;.&#x2F;validate.php&quot;,true);</span><br><span class="line">xmlhttp.send();</span><br><span class="line">xmlhttp.onreadystatechange &#x3D; function()&#123;</span><br><span class="line">            if(this.readyState &#x3D;&#x3D; 4 &amp;&amp; this.status &#x3D;&#x3D; 200)&#123;</span><br><span class="line">                var obj &#x3D; JSON.parse(this.responseText);</span><br><span class="line">                alert(obj.user+&quot;你好，注册成功！&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br></pre></td></tr></table></figure>
+<p>但是如果使用的是post方式的ajax，那么必须指明请求头：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var xmlhttp &#x3D; new XMLHttpRequest();</span><br><span class="line">       xmlhttp.open(&quot;get&quot;,&quot;.&#x2F;validate.php&quot;,true);</span><br><span class="line"></span><br><span class="line">       xmlhttp.setRequestHeader(&#39;content-type&#39;,&#39;application&#x2F;x-www-form-urlencoded&#39;);</span><br><span class="line">       </span><br><span class="line">       xmlhttp.send(&quot;type&#x3D;signin&amp;user&#x3D;&quot;+uv+&quot;&amp;pswd&#x3D;&quot;+pv);</span><br><span class="line"></span><br><span class="line">       xmlhttp.onreadystatechange &#x3D; function()&#123;</span><br><span class="line">           if(this.readyState &#x3D;&#x3D; 4 &amp;&amp; this.status &#x3D;&#x3D; 200)&#123;</span><br><span class="line">               var obj &#x3D; JSON.parse(this.responseText);</span><br><span class="line">               alert(obj.user+&quot;你好，注册成功！&quot;);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;;</span><br></pre></td></tr></table></figure>
+<p><b>也就是代码中的</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">xmlhttp.setRequestHeader(&#39;content-type&#39;,&#39;application&#x2F;x-www-form-urlencoded&#39;);</span><br></pre></td></tr></table></figure>
+<p>不然的话，会一直提示$_POST数组的下标不存在！<br></b></p>
+]]></content>
+  </entry>
 </search>
