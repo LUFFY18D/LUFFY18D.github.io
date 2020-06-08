@@ -28,7 +28,7 @@
 <meta property="og:description" content="今天看了cookie和session的视频，想自己来试一试，于是便做了一个登录注册和验证的demo。后端使用的是php，前端三驾马车使用ajax传输数据。主要遇到了两个坑： 一、sql查询如下的查询语句： 1$query &#x3D; &quot;INSERT INTO user (Username,Password,Addtime) VALUES (&#39;&amp;#123;$_POST[&amp;quot">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-25T13:02:08.000Z">
-<meta property="article:modified_time" content="2020-05-25T13:19:50.942Z">
+<meta property="article:modified_time" content="2020-06-08T07:41:46.966Z">
 <meta property="article:author" content="Luffy">
 <meta name="twitter:card" content="summary">
 
@@ -211,10 +211,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-05-25 21:02:08 / Modified: 21:19:50" itemprop="dateCreated datePublished" datetime="2020-05-25T21:02:08+08:00">2020-05-25</time>
+              <time title="Created: 2020-05-25 21:02:08" itemprop="dateCreated datePublished" datetime="2020-05-25T21:02:08+08:00">2020-05-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-06-08 15:41:46" itemprop="dateModified" datetime="2020-06-08T15:41:46+08:00">2020-06-08</time>
+              </span>
 
           
 
@@ -232,8 +238,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$query &#x3D; &quot;INSERT INTO user (Username,Password,Addtime) VALUES (&#39;&#123;$_POST[&quot;user&quot;]&#125;&#39;,&#39;&#123;$_POST[&quot;pswd&quot;]&#125;&#39;,&#39;&#123;$date&#125;&#39;);&quot;;</span><br></pre></td></tr></table></figure>
 <p>这里要特别注意两个点：</p>
 <h2 id="1、引号"><a href="#1、引号" class="headerlink" title="1、引号"></a>1、引号</h2><p>指明表的字段名的时候，绝对！不能！用单引号引起来，不然会报sql语法错误！</p>
-<h2 id="2、还是引号"><a href="#2、还是引号" class="headerlink" title="2、还是引号"></a>2、还是引号</h2><p>指明各字段的值的时候，绝对！要！用单引号引起来，不管数据库里面是什么类型的（int、varchar。。。），一律都要用单引号引起来！</p>
-<h1 id="二、使用post方式的ajax"><a href="#二、使用post方式的ajax" class="headerlink" title="二、使用post方式的ajax"></a>二、使用post方式的ajax</h1><p>我们使用get方式的时候，直接这样就可以了：</p>
+<h3 id="（更新）可以用单撇（-）括起来，避免与mysql关键字冲突。例：字段名为-ORDER-。"><a href="#（更新）可以用单撇（-）括起来，避免与mysql关键字冲突。例：字段名为-ORDER-。" class="headerlink" title="（更新）可以用单撇（`）括起来，避免与mysql关键字冲突。例：字段名为`ORDER`。"></a>（更新）可以用单撇（`）括起来，避免与mysql关键字冲突。例：字段名为`ORDER`。</h3><h2 id="2、还是引号"><a href="#2、还是引号" class="headerlink" title="2、还是引号"></a>2、还是引号</h2><p>指明各字段的值的时候，绝对！要！用单引号引起来，不管数据库里面是什么类型的（int、varchar。。。），一律都要用单引号引起来！</p>
+<h3 id="（更新）数据库中的数字类型可以不用单引号括起来。"><a href="#（更新）数据库中的数字类型可以不用单引号括起来。" class="headerlink" title="（更新）数据库中的数字类型可以不用单引号括起来。"></a>（更新）数据库中的数字类型可以不用单引号括起来。</h3><h3 id="但是，绝对不能使用双引号。"><a href="#但是，绝对不能使用双引号。" class="headerlink" title="但是，绝对不能使用双引号。"></a>但是，绝对不能使用双引号。</h3><h1 id="二、使用post方式的ajax"><a href="#二、使用post方式的ajax" class="headerlink" title="二、使用post方式的ajax"></a>二、使用post方式的ajax</h1><p>我们使用get方式的时候，直接这样就可以了：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.open(&quot;get&quot;,&quot;.&#x2F;validate.php&quot;,true);</span><br><span class="line">xmlhttp.send();</span><br><span class="line">xmlhttp.onreadystatechange &#x3D; function()&#123;</span><br><span class="line">            if(this.readyState &#x3D;&#x3D; 4 &amp;&amp; this.status &#x3D;&#x3D; 200)&#123;</span><br><span class="line">                var obj &#x3D; JSON.parse(this.responseText);</span><br><span class="line">                alert(obj.user+&quot;你好，注册成功！&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br></pre></td></tr></table></figure>
 <p>但是如果使用的是post方式的ajax，那么必须指明请求头：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var xmlhttp &#x3D; new XMLHttpRequest();</span><br><span class="line">       xmlhttp.open(&quot;get&quot;,&quot;.&#x2F;validate.php&quot;,true);</span><br><span class="line"></span><br><span class="line">       xmlhttp.setRequestHeader(&#39;content-type&#39;,&#39;application&#x2F;x-www-form-urlencoded&#39;);</span><br><span class="line">       </span><br><span class="line">       xmlhttp.send(&quot;type&#x3D;signin&amp;user&#x3D;&quot;+uv+&quot;&amp;pswd&#x3D;&quot;+pv);</span><br><span class="line"></span><br><span class="line">       xmlhttp.onreadystatechange &#x3D; function()&#123;</span><br><span class="line">           if(this.readyState &#x3D;&#x3D; 4 &amp;&amp; this.status &#x3D;&#x3D; 200)&#123;</span><br><span class="line">               var obj &#x3D; JSON.parse(this.responseText);</span><br><span class="line">               alert(obj.user+&quot;你好，注册成功！&quot;);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;;</span><br></pre></td></tr></table></figure>
@@ -320,7 +326,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、sql查询"><span class="nav-number">1.</span> <span class="nav-text">一、sql查询</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、引号"><span class="nav-number">1.1.</span> <span class="nav-text">1、引号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、还是引号"><span class="nav-number">1.2.</span> <span class="nav-text">2、还是引号</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、使用post方式的ajax"><span class="nav-number">2.</span> <span class="nav-text">二、使用post方式的ajax</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、sql查询"><span class="nav-number">1.</span> <span class="nav-text">一、sql查询</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、引号"><span class="nav-number">1.1.</span> <span class="nav-text">1、引号</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#（更新）可以用单撇（-）括起来，避免与mysql关键字冲突。例：字段名为-ORDER-。"><span class="nav-number">1.1.1.</span> <span class="nav-text">（更新）可以用单撇（&#96;）括起来，避免与mysql关键字冲突。例：字段名为&#96;ORDER&#96;。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、还是引号"><span class="nav-number">1.2.</span> <span class="nav-text">2、还是引号</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#（更新）数据库中的数字类型可以不用单引号括起来。"><span class="nav-number">1.2.1.</span> <span class="nav-text">（更新）数据库中的数字类型可以不用单引号括起来。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#但是，绝对不能使用双引号。"><span class="nav-number">1.2.2.</span> <span class="nav-text">但是，绝对不能使用双引号。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、使用post方式的ajax"><span class="nav-number">2.</span> <span class="nav-text">二、使用post方式的ajax</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -334,7 +340,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
