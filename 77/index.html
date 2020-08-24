@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>521灵魂拷问</title>
+    <title>77灵魂拷问</title>
     <style>
         *{
             padding:0;
@@ -26,9 +26,9 @@
         .title{
             margin-top: 50px;
             text-align: center;
-            background-image:-webkit-linear-gradient(bottom right,rgb(69, 212, 212),#e1fc4c); 
-            -webkit-background-clip:text; 
-            -webkit-text-fill-color:transparent; 
+            background-image:-webkit-linear-gradient(bottom right,rgb(69, 212, 212),#e1fc4c);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
         }
         .question{
             margin-top: 5px;
@@ -68,19 +68,19 @@
     </style>
 </head>
 <body>
-    <h1 id="title" class="title">######521灵魂拷问######</h1>
+    <h1 id="title" class="title">######77灵魂拷问######</h1>
     <br>
     <center>
         <img id="beauty" src="./image/bg.jpg" class="image">
     </center>
-    
+
     <br>
     <h2 class="question" id="text">Q1:这位女士是谁？</h2>
     <br>
     <div id="div1" class="btndiv">
         <button id="btn1" class="button" onclick="godie('这么傲娇！')">不知道(눈▂눈)</button>
         <div class="empty"></div>
-        <button id="btn2" class="button" onclick="next()">谁不知道似的(─.─||)</button>
+        <button id="btn2" class="button" onclick="next()">怎能不知道呢o(^▽^)o~</button>
     </div>
     <div id="div2" class="btndiv">
         <button id="btn3" class="button" onclick="godie('这么敷衍！')">美(눈▂눈)</button>
@@ -90,9 +90,9 @@
     <div id="div3" class="btndiv">
         <button id="btn5" class="button" onclick="test()">爱！爱！爱！o(^▽^)o</button>
         <div class="empty"></div>
-        <button id="btn6" class="button" onclick="final()">不...不爱°.°·(((p(≧□≦)q)))·°.°别打我</button>
+        <button id="btn6" class="button" onclick="alert('不准选这个！');this.disabled=true;">不...不爱°.°</button>
     </div>
-    <center> <h1 id="final">521快乐！</h1></center>
+    <center> <h1 id="final">七夕快乐！</h1></center>
     <script>
         window.onload = function(){
             var div2 = document.querySelector("#div2");
@@ -126,7 +126,7 @@
                 var btn1 = document.querySelector("#btn5");
                 var btn2 = document.querySelector("#btn6");
             }
-            
+
             btn1.style.display="none";
             btn2.style.display="none";
             var str = "Q1:这位女士是谁？";
@@ -149,7 +149,7 @@
         }
         function next(){
             var name = prompt("请输入她的名字：","");
-            if(name!="周悦")
+            if(name!="尹红爱")
             {
                 godie("回答错误！");
             }
@@ -176,15 +176,29 @@
         }
         function test()
         {
-            godie('这么轻浮！');
-            setTimeout(function(){
-                var text = document.querySelector("#text");
-                text.innerHTML = "Q3:再问一次！你爱她吗？";
-            },3000);
-            
+            live('尹红爱，我喜欢你！|:D~');
         }
         function final(){
-            godie('就是看你不爽，你也');
+            godie('看你不爽，你也');
+            var title= document.querySelector("#title");
+            var beauty = document.querySelector("#beauty");
+            var text = document.querySelector("#text");
+            var div1 = document.querySelector("#div1");
+            var div2 = document.querySelector("#div2");
+            var div3 = document.querySelector("#div3");
+            title.style.display = "none";
+            beauty.style.display = "none";
+            text.style.display = "none";
+            div1.style.display = "none";
+            div2.style.display = "none";
+            div3.style.display = "none";
+            var final = document.querySelector("#final");
+            final.style.display = "block";
+            final.style.position = "relative";
+            final.style.animation = "mymove 1s ease";
+        }
+        function live(msg){
+            alert(msg);
             var title= document.querySelector("#title");
             var beauty = document.querySelector("#beauty");
             var text = document.querySelector("#text");
