@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="变量声明1、varvar声明变量可以重复声明。 12var a&#x3D;1;var a&#x3D;2;&#x2F;&#x2F;a值为2，不会报错。 1、1作用域使用var声明变量的时候，声明的变量作用域是函数作用域，这是相对于let的块作用域来说的。函数作用域即声明的变量只能在本函数内访问。例子： 123function test()&amp;#123;	var a &#x3D; 1;&#x2F;&amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript学习笔记（第一弹:变量声明）">
+<meta property="og:url" content="http://yoursite.com/2021/04/24/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E7%AC%AC%E4%B8%80%E5%BC%B9-%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E%EF%BC%89/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="变量声明1、varvar声明变量可以重复声明。 12var a&#x3D;1;var a&#x3D;2;&#x2F;&#x2F;a值为2，不会报错。 1、1作用域使用var声明变量的时候，声明的变量作用域是函数作用域，这是相对于let的块作用域来说的。函数作用域即声明的变量只能在本函数内访问。例子： 123function test()&amp;#123;	var a &#x3D; 1;&#x2F;&amp;#x">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-04-24T09:35:12.000Z">
+<meta property="article:modified_time" content="2021-04-24T11:04:18.011Z">
+<meta property="article:author" content="Luffy">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2021/04/24/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E7%AC%AC%E4%B8%80%E5%BC%B9-%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E%EF%BC%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>JavaScript学习笔记（第一弹:变量声明） | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hexo</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Luffy's Blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/24/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E7%AC%AC%E4%B8%80%E5%BC%B9-%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Luffy">
+      <meta itemprop="description" content="This is my blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JavaScript学习笔记（第一弹:变量声明）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-04-24 17:35:12 / Modified: 19:04:18" itemprop="dateCreated datePublished" datetime="2021-04-24T17:35:12+08:00">2021-04-24</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h3><h4 id="1、var"><a href="#1、var" class="headerlink" title="1、var"></a>1、var</h4><p>var声明变量可以重复声明。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var a&#x3D;1;</span><br><span class="line">var a&#x3D;2;&#x2F;&#x2F;a值为2，不会报错。</span><br></pre></td></tr></table></figure>
+<h5 id="1、1作用域"><a href="#1、1作用域" class="headerlink" title="1、1作用域"></a>1、1作用域</h5><p>使用var声明变量的时候，声明的变量作用域是函数作用域，这是相对于let的块作用域来说的。<br>函数作用域即声明的变量只能在本函数内访问。<br>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function test()&#123;</span><br><span class="line">	var a &#x3D; 1;&#x2F;&#x2F;变量a只能在test函数中被访问</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在函数外使用var定义的全局变量，作用域为整个程序，此时，该变量已经成为window对象的属性。可以使用window.[属性名]来访问。</p>
+<h5 id="1-2声明提升（hoist）"><a href="#1-2声明提升（hoist）" class="headerlink" title="1.2声明提升（hoist）"></a>1.2声明提升（hoist）</h5><p>先来看一段代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(a);</span><br><span class="line">var a &#x3D; 1;</span><br></pre></td></tr></table></figure>
+<p>可以先猜想一下，这段代码能不能运行，会不会报错。<br><br>答案是不会报错，但是结果有些奇怪。<br><br>为什么不会报错呢？<br><br>因为js有声明提升这个概念的存在，即hoist<br></p>
+<h6 id="hoist-使用var定义的变量，其声明会被自动拉到该变量所在作用域的顶部"><a href="#hoist-使用var定义的变量，其声明会被自动拉到该变量所在作用域的顶部" class="headerlink" title="hoist:使用var定义的变量，其声明会被自动拉到该变量所在作用域的顶部"></a>hoist:使用var定义的变量，其声明会被自动拉到该变量所在作用域的顶部<br></h6><p>虽然a变量是在使用它后才声明的，但由于hoist，其声明被自动提升到console.log之前了,所以并不会报错。但是结果不是我们预期的。<br><br>我们的本意可能是想输入变量a的值，但这是无法做到的，它只会输出undefined。<br>这是因为，变量的声明可以提升，但是初始化是不能提升的。也就是说使用a变量的时候，它是处在<b>已定义，但未初始化</b>的状态，其值自然就是undefined。</p>
+<h4 id="2、let"><a href="#2、let" class="headerlink" title="2、let"></a>2、let</h4><p>let声明变量<b>不能</b>重复声明。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let a&#x3D;1;</span><br><span class="line">let a&#x3D;2;&#x2F;&#x2F;会报错，重复声明了</span><br></pre></td></tr></table></figure>
+<h5 id="2-1作用域"><a href="#2-1作用域" class="headerlink" title="2.1作用域"></a>2.1作用域</h5><p>let声明的变量，其作用域是块作用域。即：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if(true)&#123;</span><br><span class="line">	let a&#x3D;1;</span><br><span class="line">   console.log(a);&#x2F;&#x2F;输出1</span><br><span class="line">&#125;</span><br><span class="line">console.log(a);&#x2F;&#x2F;报错，a没有定义</span><br></pre></td></tr></table></figure>
+<p>注意：使用let全局定义的变量，也不会成为window对象的属性，不能通过window.[属性名]的方式被访问到。</p>
+<h5 id="2-2全局声明"><a href="#2-2全局声明" class="headerlink" title="2.2全局声明"></a>2.2全局声明</h5><p>使用let声明的变量，不会在作用域中被提升。<br><br>当提前使用let声明的变量的时候，会出现<b>“暂时性死区”</b>（会报错）。</p>
+<h5 id="2-3for循环中的var和let"><a href="#2-3for循环中的var和let" class="headerlink" title="2.3for循环中的var和let"></a>2.3for循环中的var和let</h5><p>如果有这样一段代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for(var i &#x3D; 0;i &lt; 5;i ++)&#123;</span><br><span class="line">	setTimeout(function()&#123;</span><br><span class="line">    	console.log(i);</span><br><span class="line">    &#125;,0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们的本意是想依次输出0 1 2 3 4,但实际输出的确实5 5 5 5 5。这是因为setTimeout是异步任务，是存放在异步队列中执行的，而for循环代码是同步任务，是存放在主线程里面执行的。当程序执行完主线程的同步任务后，才会去执行异步队列中的异步任务。而for循环结束后，变量i的值就变成了5，所以setTimeout会输出5个5。<br><br>说句题外话，以下四种任务会被放在异步队列中执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、setTimeout和setInterval</span><br><span class="line">2、DOM事件</span><br><span class="line">3、ES6中的promise</span><br><span class="line">4、ajax异步请求</span><br></pre></td></tr></table></figure>
+<p>有趣的是，当把上面的代码改成这样后：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for(var i &#x3D; 0;i &lt; 5;i ++)&#123;</span><br><span class="line">	setTimeout(console.log(i),0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果就是正常的0 1 2 3 4了。这是因为console.log(i)是一个函数执行，是和for循环一样同步执行的，而前面setTimeout中的第一个参数，是一个函数定义。就是函数定义和函数执行的区别。<br><br>再来看下let效果如何：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for(let i &#x3D; 0;i &lt; 5;i ++)&#123;</span><br><span class="line">	setTimeout(function()&#123;</span><br><span class="line">    	console.log(i);</span><br><span class="line">    &#125;,0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>它的结果是正常的，输出了0 1 2 3 4。这是因为let定义的变量是块作用域，javascript会为每次迭代生成一个新的迭代变量，setTimeout引用的也都是不同迭代变量，所以输出的是期望的值。</p>
+<h4 id="3、const"><a href="#3、const" class="headerlink" title="3、const"></a>3、const</h4><p>const的行为与let基本相同，唯一一个区别是在声明变量的时候必须同时初始化，且初始化之后，想要修改该变量的值的时候，会报错。<br><br>需要注意的是，在for of和for in循环中，循环迭代变量可以使用const定义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const arr &#x3D; [1,2,3,4,5];</span><br><span class="line">for(const val of arr)&#123;</span><br><span class="line">	console.log(val);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是在普通for循环中，却不能使用const来定义迭代变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const arr1 &#x3D; [1,2,3,4,5];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;会报错，应该使用let</span><br><span class="line">for(const i &#x3D; 0;i &lt; arr1.length;i ++)&#123;</span><br><span class="line">	console.log(arr1[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/10/jdbcUtils-1-0/" rel="prev" title="jdbcUtils 1.0">
+      <i class="fa fa-chevron-left"></i> jdbcUtils 1.0
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">变量声明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81var"><span class="nav-number">1.1.</span> <span class="nav-text">1、var</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1%E3%80%811%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">1.1.1.</span> <span class="nav-text">1、1作用域</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2%E5%A3%B0%E6%98%8E%E6%8F%90%E5%8D%87%EF%BC%88hoist%EF%BC%89"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2声明提升（hoist）</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#hoist-%E4%BD%BF%E7%94%A8var%E5%AE%9A%E4%B9%89%E7%9A%84%E5%8F%98%E9%87%8F%EF%BC%8C%E5%85%B6%E5%A3%B0%E6%98%8E%E4%BC%9A%E8%A2%AB%E8%87%AA%E5%8A%A8%E6%8B%89%E5%88%B0%E8%AF%A5%E5%8F%98%E9%87%8F%E6%89%80%E5%9C%A8%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E9%A1%B6%E9%83%A8"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">hoist:使用var定义的变量，其声明会被自动拉到该变量所在作用域的顶部
+</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81let"><span class="nav-number">1.2.</span> <span class="nav-text">2、let</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1作用域</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2%E5%85%A8%E5%B1%80%E5%A3%B0%E6%98%8E"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2全局声明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3for%E5%BE%AA%E7%8E%AF%E4%B8%AD%E7%9A%84var%E5%92%8Clet"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3for循环中的var和let</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81const"><span class="nav-number">1.3.</span> <span class="nav-text">3、const</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Luffy</p>
+  <div class="site-description" itemprop="description">This is my blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Luffy</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
