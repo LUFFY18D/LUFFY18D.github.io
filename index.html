@@ -186,6 +186,101 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/30/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E7%AC%AC%E4%BA%8C%E5%BC%B9-Symbol%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Luffy">
+      <meta itemprop="description" content="This is my blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/30/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E7%AC%AC%E4%BA%8C%E5%BC%B9-Symbol%EF%BC%89/" class="post-title-link" itemprop="url">JavaScript学习笔记（第二弹:Symbol）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-04-30 12:35:48 / Modified: 14:14:39" itemprop="dateCreated datePublished" datetime="2021-04-30T12:35:48+08:00">2021-04-30</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="什么是Symbol类型"><a href="#什么是Symbol类型" class="headerlink" title="什么是Symbol类型"></a>什么是Symbol类型</h3><p>Symbol类型的用途是确保对象属性使用唯一标识符，避免发生冲突。</p>
+<p>在所有可以使用字符串和数字作为属性名的地方，都可以使用Symbol。</p>
+<h4 id="Symbol类型的简单用法"><a href="#Symbol类型的简单用法" class="headerlink" title="Symbol类型的简单用法"></a>Symbol类型的简单用法</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mySymbol = <span class="built_in">Symbol</span>(); <span class="comment">//注意，Symbol前面是没有new的，这是为了避免创建符号包装对象</span></span><br><span class="line"><span class="keyword">let</span> otherSymbol = <span class="built_in">Symbol</span>(<span class="string">&#x27;mySymbol&#x27;</span>); <span class="comment">//也可以在创建符号的时候传入一个描述符，如‘mySymbol’</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> globalSymbol = <span class="built_in">Symbol</span>.for(<span class="string">&#x27;foo&#x27;</span>); <span class="comment">//这样会在全局注册表中注册符号</span></span><br><span class="line"><span class="comment">//如果存在这个符号，则返回该符号，否则创建一个新的符号返回</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Symbol作为对象属性"><a href="#Symbol作为对象属性" class="headerlink" title="Symbol作为对象属性"></a>Symbol作为对象属性</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s1 = <span class="built_in">Symbol</span>(<span class="string">&#x27;foo&#x27;</span>);</span><br><span class="line"><span class="keyword">let</span> s2 = <span class="built_in">Symbol</span>(<span class="string">&#x27;bar&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> o = &#123;</span><br><span class="line">  [s1]: <span class="string">&#x27;foo val&#x27;</span>,</span><br><span class="line">  [s2]: <span class="string">&#x27;bar val&#x27;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(o);</span><br></pre></td></tr></table></figure>
+
+<p><img src="D:%5CmyBlog%5Csource%5Cimg%5Cpasted-0.png" alt="image-20210430130407853"></p>
+<p>也可以像这样访问对象o：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(o[s1]);</span><br><span class="line"><span class="built_in">console</span>.log(o[s2]);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="常用的内置符号"><a href="#常用的内置符号" class="headerlink" title="常用的内置符号"></a>常用的内置符号</h4><p>内置符号为开发者暴露了JavaScript语言的内部实现，使得我们可以通过修改内置符号，从而改变代码的默认行为。</p>
+<h5 id="Symbol-hasInstance"><a href="#Symbol-hasInstance" class="headerlink" title="Symbol.hasInstance"></a>Symbol.hasInstance</h5><p>这个符号表示一个方法，该方法决定一个构造器对象是否认可一个对象是他的实例，由instanceof操作符使用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="keyword">let</span> f = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="built_in">console</span>.log(f <span class="keyword">instanceof</span> Foo);</span><br><span class="line"><span class="built_in">console</span>.log(Foo[<span class="built_in">Symbol</span>.hasInstance](f));</span><br></pre></td></tr></table></figure>
+
+<p><img src="D:%5CmyBlog%5Csource%5Cimg%5Cimage-20210430131515526.png" alt="image-20210430131515526"></p>
+<p>可以像这样改变内部行为：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bar1</span></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> [<span class="built_in">Symbol</span>.hasInstance]()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> b = <span class="keyword">new</span> Bar1();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(b <span class="keyword">instanceof</span> Bar1);</span><br><span class="line"><span class="built_in">console</span>.log(Bar1[<span class="built_in">Symbol</span>.hasInstance](b));</span><br></pre></td></tr></table></figure>
+
+<p><img src="D:%5CmyBlog%5Csource%5Cimg%5Cimage-20210430132648511.png" alt="image-20210430132648511"></p>
+<h5 id="Symbol-isConcatSpreadable"><a href="#Symbol-isConcatSpreadable" class="headerlink" title="Symbol.isConcatSpreadable"></a>Symbol.isConcatSpreadable</h5><p>这个符号表示一个布尔值，如果是true，则意味着使用Array.prototype.concat()的时候，将打平数组元素。为false会导致整个对象被追加到数组末尾。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> initial = [<span class="string">&#x27;foo&#x27;</span>];</span><br><span class="line"><span class="keyword">let</span> array = [<span class="string">&#x27;bar&#x27;</span>];</span><br><span class="line"><span class="built_in">console</span>.log(array[<span class="built_in">Symbol</span>.isConcatSpreadable]);</span><br><span class="line"><span class="built_in">console</span>.log(initial.concat(array));</span><br><span class="line">array[<span class="built_in">Symbol</span>.isConcatSpreadable] = <span class="literal">false</span>;</span><br><span class="line"><span class="built_in">console</span>.log(initial.concat(array));</span><br></pre></td></tr></table></figure>
+
+<p><img src="D:%5CmyBlog%5Csource%5Cimg%5Cimage-20210430133500594.png" alt="image-20210430133500594"></p>
+<h5 id="Symbol-match"><a href="#Symbol-match" class="headerlink" title="Symbol.match"></a>Symbol.match</h5><p>这个符号表示一个正则表达式方法，该方法用正则表达式去匹配字符串，由String.prototype.match()方法使用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StringMatcher</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="title">constructor</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">		<span class="built_in">this</span>.str = str;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	[<span class="built_in">Symbol</span>.match](target)&#123;</span><br><span class="line">		<span class="keyword">return</span> target.includes(<span class="built_in">this</span>.str);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> sm = <span class="keyword">new</span> StringMatcher(<span class="string">&#x27;foo&#x27;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;foobar&#x27;</span>.match(sm));</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;barquz&#x27;</span>.match(sm));</span><br></pre></td></tr></table></figure>
+
+<p><img src="D:%5CmyBlog%5Csource%5Cimg%5Cimage-20210430134618141.png" alt="image-20210430134618141"></p>
+<h5 id="Symbol-replace"><a href="#Symbol-replace" class="headerlink" title="Symbol.replace"></a>Symbol.replace</h5><p>这个符号表示一个正则表达式方法，该方法替换一个字符串中匹配的子串。由String.prototype.replace()方法使用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StringReplacer</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.str = str;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    [<span class="built_in">Symbol</span>.replace](target,replacement)&#123;</span><br><span class="line">        <span class="keyword">return</span> target.split(<span class="built_in">this</span>.str).join(replacement);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> stringReplacer = <span class="keyword">new</span> StringReplacer(<span class="string">&#x27;foo&#x27;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;barfoobaz&#x27;</span>.replace(stringReplacer,<span class="string">&#x27;qux&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<p><img src="D:%5CmyBlog%5Csource%5Cimg%5Cimage-20210430135444699.png" alt="image-20210430135444699"></p>
+<h5 id="Symbol-search"><a href="#Symbol-search" class="headerlink" title="Symbol.search"></a>Symbol.search</h5><p>这个符号表示一个正则表达式方法，该方法返回字符串中匹配正则表达式的索引。由String.prototype.search()方法使用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StringSearch</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">		<span class="built_in">this</span>.str = str;</span><br><span class="line">    &#125;</span><br><span class="line">    [<span class="built_in">Symbol</span>.search](target)&#123;</span><br><span class="line">        <span class="keyword">return</span> target.indexOf(<span class="built_in">this</span>.str);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> ss = <span class="keyword">new</span> StringSearch(<span class="string">&#x27;foo&#x27;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;foobar&#x27;</span>.search(ss));</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;barfoo&#x27;</span>.search(ss));</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;barqux&#x27;</span>.search(ss));</span><br></pre></td></tr></table></figure>
+
+<p><img src="D:%5CmyBlog%5Csource%5Cimg%5Cimage-20210430140102985.png" alt="image-20210430140102985"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/24/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E7%AC%AC%E4%B8%80%E5%BC%B9-%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -799,77 +894,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/17/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Luffy">
-      <meta itemprop="description" content="This is my blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/17/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-04-17 20:14:17 / Modified: 20:15:19" itemprop="dateCreated datePublished" datetime="2020-04-17T20:14:17+08:00">2020-04-17</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -939,7 +963,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
