@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>520我爱你</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        html,body{
+            font: "微软雅黑";
+            margin:0;
+            padding:0;
+        }
+        body{
+            background-image: url("./image/1.jpg");
+            background-size: cover;
+        }
+        .image{
+            width:40vw;
+            height:30vh;
+            transition: all 1s ease-in;
+        }
+        .title{
+            margin-top: 50px;
+            text-align: center;
+            background-image:-webkit-linear-gradient(bottom right,rgb(69, 212, 212),#e1fc4c);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+        }
+        .question{
+            margin-top: 5px;
+            text-align: center;
+            color:black;
+            transition: all 1s ease-in;
+        }
+        .button{
+            margin-top: 10px;
+            width:40vw;
+            height:60px;
+            background-image: -webkit-linear-gradient(bottom left,rgb(47, 134, 233),#8dc2f3);
+            float:left;
+            border:0;
+            font-size: 18px;
+            color:white;
+            font-weight: bold;
+        }
+        .btndiv{
+            display: flex;
+            justify-content: center;
+        }
+        .empty{
+            float:left;
+            width:20px;
+        }
+        @keyframes mymove {
+            from{
+                top:-20px;
+                opacity: 0;
+            }
+            to{
+                top:7px;
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title" class="title">#520我爱你#</h1>
+    <br>
+    <center>
+        <img id="beauty" src="./image/bg.jpg" class="image">
+    </center>
+
+    <br>
+    <h2 class="question" id="text">Q1:这位女生是谁？</h2>
+    <br>
+    <div id="div1" class="btndiv">
+        <button id="btn1" class="button" onclick="godie('这么傲娇！')">不知道(눈▂눈)</button>
+        <div class="empty"></div>
+        <button id="btn2" class="button" onclick="next()">怎能不知道呢o(^▽^)o~</button>
+    </div>
+    <div id="div2" class="btndiv">
+        <button id="btn3" class="button" onclick="godie('这么敷衍！')">美(눈▂눈)</button>
+        <div class="empty"></div>
+        <button id="btn4" class="button" onclick="next2()">超美的o(^▽^)o</button>
+    </div>
+    <div id="div3" class="btndiv">
+        <button id="btn5" class="button" onclick="test()">爱！o(^▽^)o</button>
+        <div class="empty"></div>
+        <button id="btn6" class="button" onclick="alert('不准选这个！');this.disabled=true;this.style.backgroundImage='none';">不...不爱°.°</button>
+    </div>
+    <center> <h1 id="final">520快乐！</h1></center>
+    <script>
+        window.onload = function(){
+            var div2 = document.querySelector("#div2");
+            var div3 = document.querySelector("#div3");
+            div2.style.display= "none";
+            div3.style.display= "none";
+            var final = document.querySelector("#final");
+            final.style.display = "none";
+        };
+        var i=0;
+        var cnt = 1;
+        function godie(msg){
+            i++;
+            alert(msg+"去屎吧！(／‵Д′)／~ ╧╧");
+            var img = document.querySelector("#beauty");
+            img.src = "./image/die.jpg";
+            var text = document.querySelector("#text");
+            text.innerHTML = "回娘胎重造！";
+            if(cnt == 1)
+            {
+                var btn1 = document.querySelector("#btn1");
+                var btn2 = document.querySelector("#btn2");
+            }
+            else if(cnt == 2)
+            {
+                var btn1 = document.querySelector("#btn3");
+                var btn2 = document.querySelector("#btn4");
+            }
+            else if(cnt == 3)
+            {
+                var btn1 = document.querySelector("#btn5");
+                var btn2 = document.querySelector("#btn6");
+            }
+
+            btn1.style.display="none";
+            btn2.style.display="none";
+            var str = "Q1:这位女生是谁？";
+            if(i!=0)
+            {
+                str = "再问一次！这位女生是谁？";
+            }
+            if(cnt == 2)
+            {
+                str = "再问一次！这位女生美吗？";
+            }
+
+            setTimeout(function()
+            {
+                img.src = "./image/bg.jpg";
+                text.innerHTML = str;
+                btn1.style.display="inline-block";
+                btn2.style.display="inline-block";
+            },3000);
+        }
+        function next(){
+            var name = prompt("请输入她的名字：","");
+            if(name!="覃莉荣")
+            {
+                godie("回答错误！");
+            }
+            else{
+                alert("emmm还不错~");
+                cnt += 1;
+                var text = document.querySelector("#text");
+                text.innerHTML="Q2:这位女生美吗？";
+                var div2 = document.querySelector("#div2");
+                var div1 = document.querySelector("#div1");
+                div1.style.display = "none";
+                div2.style.display = "flex";
+            }
+        }
+        function next2(){
+            alert("emmm还不错~是个可造之才");
+            cnt += 1;
+            var text = document.querySelector("#text");
+            text.innerHTML = "Q3:你爱她吗？";
+            var div2 = document.querySelector("#div2");
+            var div3 = document.querySelector("#div3");
+            div2.style.display = "none";
+            div3.style.display = "flex";
+        }
+        function test()
+        {
+            live('覃莉荣,我喜欢你！,在我眼里,你最美！|:D~');
+        }
+        function final(){
+            godie('看你不爽，你也');
+            var title= document.querySelector("#title");
+            var beauty = document.querySelector("#beauty");
+            var text = document.querySelector("#text");
+            var div1 = document.querySelector("#div1");
+            var div2 = document.querySelector("#div2");
+            var div3 = document.querySelector("#div3");
+            title.style.display = "none";
+            beauty.style.display = "none";
+            text.style.display = "none";
+            div1.style.display = "none";
+            div2.style.display = "none";
+            div3.style.display = "none";
+            var final = document.querySelector("#final");
+            final.style.display = "block";
+            final.style.position = "relative";
+            final.style.animation = "mymove 1s ease";
+        }
+        function live(msg){
+            alert(msg);
+            var title= document.querySelector("#title");
+            var beauty = document.querySelector("#beauty");
+            var text = document.querySelector("#text");
+            var div1 = document.querySelector("#div1");
+            var div2 = document.querySelector("#div2");
+            var div3 = document.querySelector("#div3");
+            title.style.display = "none";
+            beauty.style.display = "none";
+            text.style.display = "none";
+            div1.style.display = "none";
+            div2.style.display = "none";
+            div3.style.display = "none";
+            var final = document.querySelector("#final");
+            final.style.display = "block";
+            final.style.position = "relative";
+            final.style.animation = "mymove 1s ease";
+        }
+    </script>
+</body>
+</html>
