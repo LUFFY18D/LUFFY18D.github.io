@@ -22,11 +22,15 @@ body {
 
 h1 {
   margin: 10px 0 0;
+  font-size: 100px;
+  text-align: center;
 }
 
 h3 {
   font-weight: 400;
   margin: 10px 0;
+  font-size: 60px;
+  text-align: center;
 }
 
 .cup {
@@ -34,21 +38,22 @@ h3 {
   border: 4px solid var(--border-color);
   color: var(--border-color);
   border-radius: 0 0 40px 40px;
-  height: 330px;
-  width: 150px;
+  height: 660px;
+  width: 300px;
   margin: 30px 0;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  font-size: 28px;
 }
 
 .cup.cup-small {
-  height: 95px;
-  width: 50px;
+  height: 190px;
+  width: 100px;
   border-radius: 0 0 15px 15px;
   background-color: rgba(255, 255, 255, 0.9);
   cursor: pointer;
-  font-size: 14px;
+  font-size: 28px;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -66,7 +71,7 @@ h3 {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  width: 280px;
+  width: 480px;
 }
 
 .remained {
@@ -77,15 +82,16 @@ h3 {
   text-align: center;
   flex: 1;
   transition: 0.3s ease;
+  font-size: 28px;
 }
 
 .remained span {
-  font-size: 20px;
+  font-size: 60px;
   font-weight: bold;
 }
 
 .remained small {
-  font-size: 12px;
+  font-size: 60px;
 }
 
 .percentage {
@@ -94,7 +100,7 @@ h3 {
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 60px;
   height: 0;
   transition: 0.3s ease;
 }
@@ -102,39 +108,132 @@ h3 {
 .text {
   text-align: center;
   margin: 0 0 5px;
+  font-size: 60px;
+  margin-bottom: 20px;
 }
 
 .cancle {
   cursor: pointer;
-}  
+  font-size: 60px;
+  margin-top: 20px;
+}
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+.all-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 40px;
+  padding-left: 40px; 
+  /* padding-top: 50px; */
+}
+.record-area {
+  /* width: 200px; */
+  height: 1200px;
+  overflow-y: auto;
+  /* padding-top: 60px; */
+  margin-top: 0;
+  list-style: none;
+  padding-left: 0;
+  margin-top: 32px;
+}
+.record-area .title {
+  font-size: 36px;
+  font-weight: bold;
+}
+.record-area .list-item {
+  margin-bottom: 32px;
+  position: relative;
+  padding-left: 36px;
+}
+.list-item::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+.list-item .num {
+  margin-left: 16px;
+  font-size: 36px;
+}
+.list-item .date {
+  font-size: 36px;
+}
+.drink-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding-top: 50px;
+}
+body {
+  padding-top: 100px;
+}
+.history {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding-top: 50px;
+}
 </style>
 
-<h1>喝水记录本</h1>
-<h3>今日目标: 1.8升 </h3>
 
-<div class="cup">
-  <div class="remained" id="remained">
-    <span id="liters">1.8l</span>
-    <small>剩余</small>
+<body>
+  <h1>喝水记录本</h1>
+  <div class="all-content">
+    <div class="history">
+      <h3>历史记录</h3>
+      <ul class="record-area" id="record-list">
+
+      </ul>
+    </div>
+    
+    <div class="drink-area">
+      
+      <h3>每日目标: 2升 </h3>
+    
+      <div class="cup">
+        <div class="remained" id="remained">
+          <span id="liters">2l</span>
+          <small>剩余</small>
+        </div>
+    
+        <div class="percentage" id="percentage"></div>
+      </div>
+    
+      <p class="text">请选择喝水的杯子</p>
+    
+      <div class="cups">
+        <div class="cup cup-small">700 ml</div>
+        <div class="cup cup-small">400 ml</div>
+        <div class="cup cup-small">600 ml</div>
+        <div class="cup cup-small">500 ml</div>
+        <div class="cup cup-small">50 ml</div>
+        <div class="cup cup-small">100 ml</div>
+        <div class="cup cup-small">150 ml</div>
+        <div class="cup cup-small">300 ml</div>
+      </div>
+    
+      <div id="cancle" class="cancle">清空今天</div>
+    </div>
   </div>
+</body>
 
-  <div class="percentage" id="percentage"></div>
-</div>
 
-<p class="text">请选择喝水的杯子</p>
 
-<div class="cups">
-  <div class="cup cup-small">700 ml</div>
-  <div class="cup cup-small">400 ml</div>
-  <div class="cup cup-small">600 ml</div>
-  <div class="cup cup-small">500 ml</div>
-  <div class="cup cup-small">50 ml</div>
-  <div class="cup cup-small">100 ml</div>
-  <div class="cup cup-small">150 ml</div>
-  <div class="cup cup-small">300 ml</div>
-</div>
-
-<div id="cancle" class="cancle">清空</div>
 
 <script>
 const smallCups = document.querySelectorAll('.cup-small')
@@ -143,26 +242,76 @@ const percentage = document.getElementById('percentage')
 const remained = document.getElementById('remained')
 const DOMcancle = document.getElementById('cancle')
 
-let goal = Number(window.localStorage.getItem(new Date().toLocaleDateString() + '-goal')) || 1800;
-updateBigCup(1800 - goal)
 
+let goal = 2000
+let list = JSON.parse(window.localStorage.getItem('drink')) || []
+const curIndex = list.findIndex((item) => {
+  return item.date === new Date().toLocaleDateString()
+})
+if (curIndex === -1) {
+  goal = 2000
+} else {
+  goal = list[curIndex].goal
+}
+const total = 2000 - goal;
+updateBigCup(2000 - goal)
+initHistory()
 smallCups.forEach((cup, idx) => {
   const ml = ['700', '400', '600', '500', '50', '100', '150', '300'];
   cup.addEventListener('click', () => highlightCups(ml[idx]))
 })
 
+function initHistory() {
+  const recordListDom = document.getElementById('record-list')
+  // const historyListDom = document.getElementsByClassName('list-item') || []
+  const subList = recordListDom.childNodes
+  // for(let i = 0;i < recordListDom.childNodes.length; i++) {
+  //   recordListDom.removeChild(recordListDom.childNodes[i])
+  // }
+  for(let i = subList.length - 1; i >= 0; i--) {
+    recordListDom.removeChild(subList[i])
+  }
+  const recordList = JSON.parse(window.localStorage.getItem('drink')) || []
+  recordList.forEach((item, index) => {
+    const liDom = document.createElement('li')
+    liDom.setAttribute('class', 'list-item')
+
+    const spanDate = document.createElement('span')
+    spanDate.setAttribute('class', 'date')
+    spanDate.innerText = item.date
+
+    const spanNum = document.createElement('span')
+    spanNum.setAttribute('class', 'num')
+    spanNum.innerText = 2000 - item.goal + 'ml'
+
+    liDom.appendChild(spanDate)
+    liDom.appendChild(spanNum)
+    recordListDom.appendChild(liDom)
+  })
+  
+}
 function highlightCups(ml) {
   goal -= ml;
-  window.localStorage.setItem(new Date().toLocaleDateString() + '-goal', goal);
-  const total = 1800 - goal;
+  const list = JSON.parse(window.localStorage.getItem('drink')) || []
+  const curIndex = list.findIndex((item) => {
+    return item.date === new Date().toLocaleDateString()
+  })
+  if (curIndex === -1) {
+    list.push({ date: new Date().toLocaleDateString(), goal: goal })
+  } else {
+    list[curIndex].goal = goal
+  }
+  window.localStorage.setItem('drink', JSON.stringify(list));
+  const total = 2000 - goal;
   updateBigCup(total)
+  initHistory()
 }
 
 function updateBigCup(total) {
-  if (goal != 1800) {
+  if (goal != 2000) {
     percentage.style.visibility = 'visible'
-    percentage.style.height = `${total / 1800 * 330}px`
-    percentage.innerText = `${(total / 1800 * 100).toFixed(0)}%`
+    percentage.style.height = `${total / 2000 * 660}px`
+    percentage.innerText = `${(total / 2000 * 100).toFixed(0)}%`
   }
 
   if (goal <= 0) {
@@ -179,12 +328,22 @@ function update() {
   remained.style.visibility = 'visible'
   remained.style.height = 0
   percentage.style.height = `0px`
-  liters.innerText = '1.8L'
+  liters.innerText = '2L'
 }
 
 DOMcancle.addEventListener('click', () => {
-  window.localStorage.removeItem(new Date().toLocaleDateString() + '-goal')
-  goal = 1800
+  // window.localStorage.removeItem(new Date().toLocaleDateString() + '-goal')
+  const list = JSON.parse(window.localStorage.getItem('drink')) || []
+  const curIndex = list.findIndex((item) => {
+    return item.date === new Date().toLocaleDateString()
+  })
+  if(curIndex !== -1) {
+    list.splice(curIndex, 1)
+  }
+  window.localStorage.setItem('drink', JSON.stringify(list))
+  goal = 2000
   update()
+  updateBigCup(0)
+  initHistory()
 })
 </script>
