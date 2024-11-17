@@ -1,0 +1,80 @@
+.main-title {
+  font-size: 6em;
+  font-weight: bold;
+  color: #000;
+  text-align: center;
+  margin-top: 1em;
+}
+.btn-group {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5em;;
+  .btn {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img {
+      width: 10em;
+      height: 10em;
+    }
+    .label {
+      font-size: 3em;
+      color: #000;
+      display: inline-block;
+    }
+  }
+}
+.text {
+  padding: 0 5em;
+  width: calc(100% - 10rem);
+  .title {
+    font-size: 3em;
+    font-weight: bold;
+    color: #000;
+    width: 100%;
+    white-space: wrap;
+  }
+
+  .content {
+    font-size: 3em;
+    font-weight: bold;
+    color: #696969;
+    width: 100%;
+    white-space: wrap;
+  }
+}
+.tips {
+  width: 100%;
+  height: 3em;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  text-align: center;
+  .message-text {
+    height: 100%;
+    color: #fff;
+    font-size: 2em;
+    /* font-weight: bold; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+}
+
+.tips.success {
+  background-color: #67C23A;
+}
+.tips.error {
+  background-color: #F56C6C;
+}
