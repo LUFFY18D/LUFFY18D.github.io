@@ -1,1059 +1,174 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
-
-  <meta name="description" content="This is my blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="This is my blog">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="Luffy">
-<meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="http://yoursite.com/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : true,
-    isPost : false,
-    lang   : 'en'
-  };
-</script>
-
-  <title>Hexo</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="./md5.js"></script>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="tips" id="tips">
+      <p class="message-text" id="message"></p>
     </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Hexo</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">Luffy's Blog</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
+    <p class="main-title">中英翻译小工具</p>
+    <div class="btn-group">
+      <div class="btn" id="record-btn">
+        <img src="./img/recording.png" alt="" />
+        <span class="label" id="record-label">开始</span>
+      </div>
+      <div class="btn" id="play-btn">
+        <img src="./img/play.png" alt="" />
+        <span class="label" id="play-label">播放</span>
+      </div>
     </div>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
-        </a>
-      </li>
-  </ul>
-</nav>
-
-
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="Searching..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
+    <div class="text">
+      <p class="title">原文：</p>
+      <p id="final-result" class="content"></p>
     </div>
-  </div>
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content index posts-expand">
-            
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/30/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E7%AC%AC%E4%BA%8C%E5%BC%B9-Symbol%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Luffy">
-      <meta itemprop="description" content="This is my blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/30/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E7%AC%AC%E4%BA%8C%E5%BC%B9-Symbol%EF%BC%89/" class="post-title-link" itemprop="url">JavaScript学习笔记（第二弹:Symbol）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-04-30 12:35:48 / Modified: 14:20:58" itemprop="dateCreated datePublished" datetime="2021-04-30T12:35:48+08:00">2021-04-30</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="什么是Symbol类型"><a href="#什么是Symbol类型" class="headerlink" title="什么是Symbol类型"></a>什么是Symbol类型</h3><p>Symbol类型的用途是确保对象属性使用唯一标识符，避免发生冲突。</p>
-<p>在所有可以使用字符串和数字作为属性名的地方，都可以使用Symbol。</p>
-<h4 id="Symbol类型的简单用法"><a href="#Symbol类型的简单用法" class="headerlink" title="Symbol类型的简单用法"></a>Symbol类型的简单用法</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mySymbol = <span class="built_in">Symbol</span>(); <span class="comment">//注意，Symbol前面是没有new的，这是为了避免创建符号包装对象</span></span><br><span class="line"><span class="keyword">let</span> otherSymbol = <span class="built_in">Symbol</span>(<span class="string">&#x27;mySymbol&#x27;</span>); <span class="comment">//也可以在创建符号的时候传入一个描述符，如‘mySymbol’</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> globalSymbol = <span class="built_in">Symbol</span>.for(<span class="string">&#x27;foo&#x27;</span>); <span class="comment">//这样会在全局注册表中注册符号</span></span><br><span class="line"><span class="comment">//如果存在这个符号，则返回该符号，否则创建一个新的符号返回</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="Symbol作为对象属性"><a href="#Symbol作为对象属性" class="headerlink" title="Symbol作为对象属性"></a>Symbol作为对象属性</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s1 = <span class="built_in">Symbol</span>(<span class="string">&#x27;foo&#x27;</span>);</span><br><span class="line"><span class="keyword">let</span> s2 = <span class="built_in">Symbol</span>(<span class="string">&#x27;bar&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> o = &#123;</span><br><span class="line">  [s1]: <span class="string">&#x27;foo val&#x27;</span>,</span><br><span class="line">  [s2]: <span class="string">&#x27;bar val&#x27;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(o);</span><br></pre></td></tr></table></figure>
-
-<p><img src="/img/pasted-0.png" alt="image-20210430130407853"></p>
-<p>也可以像这样访问对象o：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(o[s1]);</span><br><span class="line"><span class="built_in">console</span>.log(o[s2]);</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="常用的内置符号"><a href="#常用的内置符号" class="headerlink" title="常用的内置符号"></a>常用的内置符号</h4><p>内置符号为开发者暴露了JavaScript语言的内部实现，使得我们可以通过修改内置符号，从而改变代码的默认行为。</p>
-<h5 id="Symbol-hasInstance"><a href="#Symbol-hasInstance" class="headerlink" title="Symbol.hasInstance"></a>Symbol.hasInstance</h5><p>这个符号表示一个方法，该方法决定一个构造器对象是否认可一个对象是他的实例，由instanceof操作符使用。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="keyword">let</span> f = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="built_in">console</span>.log(f <span class="keyword">instanceof</span> Foo);</span><br><span class="line"><span class="built_in">console</span>.log(Foo[<span class="built_in">Symbol</span>.hasInstance](f));</span><br></pre></td></tr></table></figure>
-
-<p><img src="/img/image-20210430131515526.png" alt="image-20210430131515526"></p>
-<p>可以像这样改变内部行为：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bar1</span></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> [<span class="built_in">Symbol</span>.hasInstance]()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> b = <span class="keyword">new</span> Bar1();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(b <span class="keyword">instanceof</span> Bar1);</span><br><span class="line"><span class="built_in">console</span>.log(Bar1[<span class="built_in">Symbol</span>.hasInstance](b));</span><br></pre></td></tr></table></figure>
-
-<p><img src="/img/image-20210430132648511.png" alt="image-20210430132648511"></p>
-<h5 id="Symbol-isConcatSpreadable"><a href="#Symbol-isConcatSpreadable" class="headerlink" title="Symbol.isConcatSpreadable"></a>Symbol.isConcatSpreadable</h5><p>这个符号表示一个布尔值，如果是true，则意味着使用Array.prototype.concat()的时候，将打平数组元素。为false会导致整个对象被追加到数组末尾。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> initial = [<span class="string">&#x27;foo&#x27;</span>];</span><br><span class="line"><span class="keyword">let</span> array = [<span class="string">&#x27;bar&#x27;</span>];</span><br><span class="line"><span class="built_in">console</span>.log(array[<span class="built_in">Symbol</span>.isConcatSpreadable]);</span><br><span class="line"><span class="built_in">console</span>.log(initial.concat(array));</span><br><span class="line">array[<span class="built_in">Symbol</span>.isConcatSpreadable] = <span class="literal">false</span>;</span><br><span class="line"><span class="built_in">console</span>.log(initial.concat(array));</span><br></pre></td></tr></table></figure>
-
-<p><img src="/img/image-20210430133500594.png" alt="image-20210430133500594"></p>
-<h5 id="Symbol-match"><a href="#Symbol-match" class="headerlink" title="Symbol.match"></a>Symbol.match</h5><p>这个符号表示一个正则表达式方法，该方法用正则表达式去匹配字符串，由String.prototype.match()方法使用。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StringMatcher</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="title">constructor</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">		<span class="built_in">this</span>.str = str;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	[<span class="built_in">Symbol</span>.match](target)&#123;</span><br><span class="line">		<span class="keyword">return</span> target.includes(<span class="built_in">this</span>.str);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> sm = <span class="keyword">new</span> StringMatcher(<span class="string">&#x27;foo&#x27;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;foobar&#x27;</span>.match(sm));</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;barquz&#x27;</span>.match(sm));</span><br></pre></td></tr></table></figure>
-
-<p><img src="/img/image-20210430134618141.png" alt="image-20210430134618141"></p>
-<h5 id="Symbol-replace"><a href="#Symbol-replace" class="headerlink" title="Symbol.replace"></a>Symbol.replace</h5><p>这个符号表示一个正则表达式方法，该方法替换一个字符串中匹配的子串。由String.prototype.replace()方法使用。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StringReplacer</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.str = str;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    [<span class="built_in">Symbol</span>.replace](target,replacement)&#123;</span><br><span class="line">        <span class="keyword">return</span> target.split(<span class="built_in">this</span>.str).join(replacement);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> stringReplacer = <span class="keyword">new</span> StringReplacer(<span class="string">&#x27;foo&#x27;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;barfoobaz&#x27;</span>.replace(stringReplacer,<span class="string">&#x27;qux&#x27;</span>));</span><br></pre></td></tr></table></figure>
-
-<p><img src="/img/image-20210430135444699.png" alt="image-20210430135444699"></p>
-<h5 id="Symbol-search"><a href="#Symbol-search" class="headerlink" title="Symbol.search"></a>Symbol.search</h5><p>这个符号表示一个正则表达式方法，该方法返回字符串中匹配正则表达式的索引。由String.prototype.search()方法使用。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StringSearch</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">		<span class="built_in">this</span>.str = str;</span><br><span class="line">    &#125;</span><br><span class="line">    [<span class="built_in">Symbol</span>.search](target)&#123;</span><br><span class="line">        <span class="keyword">return</span> target.indexOf(<span class="built_in">this</span>.str);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> ss = <span class="keyword">new</span> StringSearch(<span class="string">&#x27;foo&#x27;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;foobar&#x27;</span>.search(ss));</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;barfoo&#x27;</span>.search(ss));</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;barqux&#x27;</span>.search(ss));</span><br></pre></td></tr></table></figure>
-
-<p><img src="/img/image-20210430140102985.png" alt="image-20210430140102985"></p>
-
-      
+    <div class="text">
+      <p class="title dst">译文：</p>
+      <p id="trans-result" class="content dst"></p>
     </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/24/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E7%AC%AC%E4%B8%80%E5%BC%B9-%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Luffy">
-      <meta itemprop="description" content="This is my blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/24/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E7%AC%AC%E4%B8%80%E5%BC%B9-%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E%EF%BC%89/" class="post-title-link" itemprop="url">JavaScript学习笔记（第一弹:变量声明）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-04-24 17:35:12 / Modified: 19:04:18" itemprop="dateCreated datePublished" datetime="2021-04-24T17:35:12+08:00">2021-04-24</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h3><h4 id="1、var"><a href="#1、var" class="headerlink" title="1、var"></a>1、var</h4><p>var声明变量可以重复声明。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var a&#x3D;1;</span><br><span class="line">var a&#x3D;2;&#x2F;&#x2F;a值为2，不会报错。</span><br></pre></td></tr></table></figure>
-<h5 id="1、1作用域"><a href="#1、1作用域" class="headerlink" title="1、1作用域"></a>1、1作用域</h5><p>使用var声明变量的时候，声明的变量作用域是函数作用域，这是相对于let的块作用域来说的。<br>函数作用域即声明的变量只能在本函数内访问。<br>例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function test()&#123;</span><br><span class="line">	var a &#x3D; 1;&#x2F;&#x2F;变量a只能在test函数中被访问</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在函数外使用var定义的全局变量，作用域为整个程序，此时，该变量已经成为window对象的属性。可以使用window.[属性名]来访问。</p>
-<h5 id="1-2声明提升（hoist）"><a href="#1-2声明提升（hoist）" class="headerlink" title="1.2声明提升（hoist）"></a>1.2声明提升（hoist）</h5><p>先来看一段代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(a);</span><br><span class="line">var a &#x3D; 1;</span><br></pre></td></tr></table></figure>
-<p>可以先猜想一下，这段代码能不能运行，会不会报错。<br><br>答案是不会报错，但是结果有些奇怪。<br><br>为什么不会报错呢？<br><br>因为js有声明提升这个概念的存在，即hoist<br></p>
-<h6 id="hoist-使用var定义的变量，其声明会被自动拉到该变量所在作用域的顶部"><a href="#hoist-使用var定义的变量，其声明会被自动拉到该变量所在作用域的顶部" class="headerlink" title="hoist:使用var定义的变量，其声明会被自动拉到该变量所在作用域的顶部"></a>hoist:使用var定义的变量，其声明会被自动拉到该变量所在作用域的顶部<br></h6><p>虽然a变量是在使用它后才声明的，但由于hoist，其声明被自动提升到console.log之前了,所以并不会报错。但是结果不是我们预期的。<br><br>我们的本意可能是想输入变量a的值，但这是无法做到的，它只会输出undefined。<br>这是因为，变量的声明可以提升，但是初始化是不能提升的。也就是说使用a变量的时候，它是处在<b>已定义，但未初始化</b>的状态，其值自然就是undefined。</p>
-<h4 id="2、let"><a href="#2、let" class="headerlink" title="2、let"></a>2、let</h4><p>let声明变量<b>不能</b>重复声明。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let a&#x3D;1;</span><br><span class="line">let a&#x3D;2;&#x2F;&#x2F;会报错，重复声明了</span><br></pre></td></tr></table></figure>
-<h5 id="2-1作用域"><a href="#2-1作用域" class="headerlink" title="2.1作用域"></a>2.1作用域</h5><p>let声明的变量，其作用域是块作用域。即：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if(true)&#123;</span><br><span class="line">	let a&#x3D;1;</span><br><span class="line">   console.log(a);&#x2F;&#x2F;输出1</span><br><span class="line">&#125;</span><br><span class="line">console.log(a);&#x2F;&#x2F;报错，a没有定义</span><br></pre></td></tr></table></figure>
-<p>注意：使用let全局定义的变量，也不会成为window对象的属性，不能通过window.[属性名]的方式被访问到。</p>
-<h5 id="2-2全局声明"><a href="#2-2全局声明" class="headerlink" title="2.2全局声明"></a>2.2全局声明</h5><p>使用let声明的变量，不会在作用域中被提升。<br><br>当提前使用let声明的变量的时候，会出现<b>“暂时性死区”</b>（会报错）。</p>
-<h5 id="2-3for循环中的var和let"><a href="#2-3for循环中的var和let" class="headerlink" title="2.3for循环中的var和let"></a>2.3for循环中的var和let</h5><p>如果有这样一段代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for(var i &#x3D; 0;i &lt; 5;i ++)&#123;</span><br><span class="line">	setTimeout(function()&#123;</span><br><span class="line">    	console.log(i);</span><br><span class="line">    &#125;,0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我们的本意是想依次输出0 1 2 3 4,但实际输出的确实5 5 5 5 5。这是因为setTimeout是异步任务，是存放在异步队列中执行的，而for循环代码是同步任务，是存放在主线程里面执行的。当程序执行完主线程的同步任务后，才会去执行异步队列中的异步任务。而for循环结束后，变量i的值就变成了5，所以setTimeout会输出5个5。<br><br>说句题外话，以下四种任务会被放在异步队列中执行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、setTimeout和setInterval</span><br><span class="line">2、DOM事件</span><br><span class="line">3、ES6中的promise</span><br><span class="line">4、ajax异步请求</span><br></pre></td></tr></table></figure>
-<p>有趣的是，当把上面的代码改成这样后：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for(var i &#x3D; 0;i &lt; 5;i ++)&#123;</span><br><span class="line">	setTimeout(console.log(i),0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出结果就是正常的0 1 2 3 4了。这是因为console.log(i)是一个函数执行，是和for循环一样同步执行的，而前面setTimeout中的第一个参数，是一个函数定义。就是函数定义和函数执行的区别。<br><br>再来看下let效果如何：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for(let i &#x3D; 0;i &lt; 5;i ++)&#123;</span><br><span class="line">	setTimeout(function()&#123;</span><br><span class="line">    	console.log(i);</span><br><span class="line">    &#125;,0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>它的结果是正常的，输出了0 1 2 3 4。这是因为let定义的变量是块作用域，javascript会为每次迭代生成一个新的迭代变量，setTimeout引用的也都是不同迭代变量，所以输出的是期望的值。</p>
-<h4 id="3、const"><a href="#3、const" class="headerlink" title="3、const"></a>3、const</h4><p>const的行为与let基本相同，唯一一个区别是在声明变量的时候必须同时初始化，且初始化之后，想要修改该变量的值的时候，会报错。<br><br>需要注意的是，在for of和for in循环中，循环迭代变量可以使用const定义：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const arr &#x3D; [1,2,3,4,5];</span><br><span class="line">for(const val of arr)&#123;</span><br><span class="line">	console.log(val);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>但是在普通for循环中，却不能使用const来定义迭代变量：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const arr1 &#x3D; [1,2,3,4,5];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;会报错，应该使用let</span><br><span class="line">for(const i &#x3D; 0;i &lt; arr1.length;i ++)&#123;</span><br><span class="line">	console.log(arr1[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/10/jdbcUtils-1-0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Luffy">
-      <meta itemprop="description" content="This is my blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/10/jdbcUtils-1-0/" class="post-title-link" itemprop="url">jdbcUtils 1.0</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-06-10 20:59:38 / Modified: 21:06:34" itemprop="dateCreated datePublished" datetime="2020-06-10T20:59:38+08:00">2020-06-10</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>使用jdbc连接数据库的时候，总是要获取Connection，这样很多代码都是重复的，因此自己写一个getConnection，实现相应功能。<br/><br>为了可重用，四大参数：1、驱动类名，2、url，3、数据库账号，4、数据库密码都写在一个properties文件中，在程序中加载。<br/><br>代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;该文件貌似该放在和调用类一个包中,不然加载properties文件会失败</span><br><span class="line">package luffy18d.github.io;</span><br><span class="line"></span><br><span class="line">import java.io.InputStream;</span><br><span class="line">import java.sql.Connection;</span><br><span class="line">import java.sql.DriverManager;</span><br><span class="line">import java.sql.SQLException;</span><br><span class="line">import java.util.Properties;</span><br><span class="line"></span><br><span class="line">public class jdbcUtils &#123;</span><br><span class="line">    public static Properties props &#x3D; null;</span><br><span class="line">    static &#123;</span><br><span class="line">        try&#123;</span><br><span class="line">            &#x2F;&#x2F;获取配置文件内容</span><br><span class="line">            InputStream in &#x3D; jdbcUtils.class.getClassLoader().getResourceAsStream(&quot;dbconfig.properties&quot;);</span><br><span class="line">            props &#x3D; new Properties();</span><br><span class="line">            props.load(in);</span><br><span class="line">            &#x2F;&#x2F;加载驱动类</span><br><span class="line">            Class.forName(props.getProperty(&quot;driverClassName&quot;));</span><br><span class="line">        &#125;catch (Exception e)&#123;</span><br><span class="line">            throw new RuntimeException(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public static Connection getConnection() throws SQLException &#123;</span><br><span class="line"></span><br><span class="line">        return DriverManager.getConnection(props.getProperty(&quot;url&quot;),</span><br><span class="line">                props.getProperty(&quot;userName&quot;),</span><br><span class="line">                props.getProperty(&quot;password&quot;));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>static块中的代码在类加载的时候会执行，且只执行一次，这是因为该块的代码是不需要重复执行的，且io操作也费时，影响性能。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/08/mysql%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%91%BD%E4%BB%A4-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Luffy">
-      <meta itemprop="description" content="This is my blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/08/mysql%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%91%BD%E4%BB%A4-1/" class="post-title-link" itemprop="url">mysql导入导出命令</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-06-08 15:55:23 / Modified: 16:14:10" itemprop="dateCreated datePublished" datetime="2020-06-08T15:55:23+08:00">2020-06-08</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="mysql导出sql文件"><a href="#mysql导出sql文件" class="headerlink" title="mysql导出sql文件"></a>mysql导出sql文件</h1><h2 id="1、导出的sql文件包含数据"><a href="#1、导出的sql文件包含数据" class="headerlink" title="1、导出的sql文件包含数据"></a>1、导出的sql文件包含数据</h2><p>命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -uroot -p123 mydb&gt;d:&#x2F;mydb.sql</span><br></pre></td></tr></table></figure>
-
-<h2 id="2、导出的sql文件不包含数据"><a href="#2、导出的sql文件不包含数据" class="headerlink" title="2、导出的sql文件不包含数据"></a>2、导出的sql文件<font style="color:red">不</font>包含数据</h2><p>命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -uroot -p123 -d -add-drop-table mydb&gt;d:&#x2F;mydb.sql</span><br></pre></td></tr></table></figure>
-<h3 id="d：表示没有数据"><a href="#d：表示没有数据" class="headerlink" title="-d：表示没有数据"></a>-d：表示没有数据</h3><h3 id="add-drop-table-在create语句之前增加drop-table（默认参数）防止表名重复"><a href="#add-drop-table-在create语句之前增加drop-table（默认参数）防止表名重复" class="headerlink" title="-add-drop-table:在create语句之前增加drop table（默认参数）防止表名重复"></a>-add-drop-table:在create语句之前增加drop table（默认参数）防止表名重复<br/></h3><h3 id="可以根据需要使用–skip-add-drop-table参数。"><a href="#可以根据需要使用–skip-add-drop-table参数。" class="headerlink" title="可以根据需要使用–skip-add-drop-table参数。"></a>可以根据需要使用–skip-add-drop-table参数。</h3><h1 id="mysql导入sql文件"><a href="#mysql导入sql文件" class="headerlink" title="mysql导入sql文件"></a>mysql导入sql文件</h1><p>命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p123 mydb&lt;d:&#x2F;mydb.sql</span><br></pre></td></tr></table></figure>
-<p>或者</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p123&#x2F;&#x2F;登录</span><br><span class="line">use mydb</span><br><span class="line">source d:&#x2F;mydb.sql</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/27/servlet%E4%B8%AD%E6%96%87%E4%BC%A0%E8%BE%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Luffy">
-      <meta itemprop="description" content="This is my blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/27/servlet%E4%B8%AD%E6%96%87%E4%BC%A0%E8%BE%93/" class="post-title-link" itemprop="url">servlet中文传输</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-05-27 13:03:00 / Modified: 13:14:27" itemprop="dateCreated datePublished" datetime="2020-05-27T13:03:00+08:00">2020-05-27</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>先贴上代码：<br>这里做的是一个jsp页面向servlet分别GET和POST中文,servlet再将中文回显到jsp页面的实例。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">package luffy18d.github.io.img;</span><br><span class="line"></span><br><span class="line">import org.apache.commons.io.IOUtils;</span><br><span class="line"></span><br><span class="line">import javax.servlet.ServletException;</span><br><span class="line">import javax.servlet.http.HttpServlet;</span><br><span class="line">import javax.servlet.http.HttpServletRequest;</span><br><span class="line">import javax.servlet.http.HttpServletResponse;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">public class ImgOutput extends HttpServlet &#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException &#123;</span><br><span class="line">        &#x2F;&#x2F;从浏览器获取中文并回显中文</span><br><span class="line">        String name &#x3D; req.getParameter(&quot;username&quot;);</span><br><span class="line">        System.out.println(name);</span><br><span class="line">        byte[] bytes2 &#x3D; name.getBytes();&#x2F;&#x2F;转换成字节码再输出</span><br><span class="line">        resp.getOutputStream().write(bytes2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException &#123;</span><br><span class="line">        req.setCharacterEncoding(&quot;utf-8&quot;);</span><br><span class="line">        String name &#x3D; req.getParameter(&quot;username&quot;);</span><br><span class="line">        System.out.println(name);</span><br><span class="line">        byte[] bytes3 &#x3D; name.getBytes();&#x2F;&#x2F;转换成字节码再输出</span><br><span class="line">        resp.getOutputStream().write(bytes3);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h6 id="使用resp-getOutputStream以字节流向jsp网页输出中文的时候，要先将中文转换成字节数组，再输出。"><a href="#使用resp-getOutputStream以字节流向jsp网页输出中文的时候，要先将中文转换成字节数组，再输出。" class="headerlink" title="使用resp.getOutputStream以字节流向jsp网页输出中文的时候，要先将中文转换成字节数组，再输出。"></a>使用resp.getOutputStream以字节流向jsp网页输出中文的时候，要先将中文转换成字节数组，再输出。<br></h6><h6 id="使用resp-getWriter以字符流向jsp网页输出中文的时候，不用将中文转换成字节数组，但是要加上这么一句："><a href="#使用resp-getWriter以字符流向jsp网页输出中文的时候，不用将中文转换成字节数组，但是要加上这么一句：" class="headerlink" title="使用resp.getWriter以字符流向jsp网页输出中文的时候，不用将中文转换成字节数组，但是要加上这么一句："></a>使用resp.getWriter以字符流向jsp网页输出中文的时候，不用将中文转换成字节数组，但是要加上这么一句：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resp.setContentType(&quot;text&#x2F;html;charset&#x3D;utf-8&quot;);</span><br></pre></td></tr></table></figure>
-<h6 id="也就是设置相应数据的字符编码为utf-8"><a href="#也就是设置相应数据的字符编码为utf-8" class="headerlink" title="也就是设置相应数据的字符编码为utf-8."></a>也就是设置相应数据的字符编码为utf-8.</h6>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/26/translate%E8%B5%8B%E7%99%BE%E5%88%86%E5%80%BC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Luffy">
-      <meta itemprop="description" content="This is my blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/26/translate%E8%B5%8B%E7%99%BE%E5%88%86%E5%80%BC/" class="post-title-link" itemprop="url">translate赋百分值</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-05-26 13:20:47 / Modified: 13:24:41" itemprop="dateCreated datePublished" datetime="2020-05-26T13:20:47+08:00">2020-05-26</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>当我们需要将内容垂直水平居中的时候，可能会用到这样的方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.container&#123;</span><br><span class="line">            position:absolute;</span><br><span class="line">            top:50vh;</span><br><span class="line">            left:50vw;</span><br><span class="line">            width:500px;</span><br><span class="line">            height:500px;</span><br><span class="line">            transform:translate(-50%,-50%);</span><br><span class="line">            -webkit-transform:translate(-50%,-50%);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<p>需要注意的是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">width:500px;</span><br><span class="line">height:500px;</span><br></pre></td></tr></table></figure>
-<h6 id="给元素设置宽高这两句一定不能省略，不然后面的transform-translate-就只能接收px值，给它传-50-这种百分值是无效的。"><a href="#给元素设置宽高这两句一定不能省略，不然后面的transform-translate-就只能接收px值，给它传-50-这种百分值是无效的。" class="headerlink" title="给元素设置宽高这两句一定不能省略，不然后面的transform:translate()就只能接收px值，给它传-50%这种百分值是无效的。"></a>给元素设置宽高这两句一定不能省略，不然后面的transform:translate()就只能接收px值，给它传-50%这种百分值是无效的。</h6>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/25/ajax%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E8%B8%A9%E5%9D%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Luffy">
-      <meta itemprop="description" content="This is my blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/25/ajax%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E8%B8%A9%E5%9D%91/" class="post-title-link" itemprop="url">ajax登录注册踩坑</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-05-25 21:02:08" itemprop="dateCreated datePublished" datetime="2020-05-25T21:02:08+08:00">2020-05-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-08 15:41:46" itemprop="dateModified" datetime="2020-06-08T15:41:46+08:00">2020-06-08</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>今天看了cookie和session的视频，想自己来试一试，于是便做了一个登录注册和验证的demo。后端使用的是php，前端三驾马车使用ajax传输数据。主要遇到了两个坑：</p>
-<h1 id="一、sql查询"><a href="#一、sql查询" class="headerlink" title="一、sql查询"></a>一、sql查询</h1><p>如下的查询语句：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$query &#x3D; &quot;INSERT INTO user (Username,Password,Addtime) VALUES (&#39;&#123;$_POST[&quot;user&quot;]&#125;&#39;,&#39;&#123;$_POST[&quot;pswd&quot;]&#125;&#39;,&#39;&#123;$date&#125;&#39;);&quot;;</span><br></pre></td></tr></table></figure>
-<p>这里要特别注意两个点：</p>
-<h2 id="1、引号"><a href="#1、引号" class="headerlink" title="1、引号"></a>1、引号</h2><p>指明表的字段名的时候，绝对！不能！用单引号引起来，不然会报sql语法错误！</p>
-<h3 id="（更新）可以用单撇（-）括起来，避免与mysql关键字冲突。例：字段名为-ORDER-。"><a href="#（更新）可以用单撇（-）括起来，避免与mysql关键字冲突。例：字段名为-ORDER-。" class="headerlink" title="（更新）可以用单撇（`）括起来，避免与mysql关键字冲突。例：字段名为`ORDER`。"></a>（更新）可以用单撇（`）括起来，避免与mysql关键字冲突。例：字段名为`ORDER`。</h3><h2 id="2、还是引号"><a href="#2、还是引号" class="headerlink" title="2、还是引号"></a>2、还是引号</h2><p>指明各字段的值的时候，绝对！要！用单引号引起来，不管数据库里面是什么类型的（int、varchar。。。），一律都要用单引号引起来！</p>
-<h3 id="（更新）数据库中的数字类型可以不用单引号括起来。"><a href="#（更新）数据库中的数字类型可以不用单引号括起来。" class="headerlink" title="（更新）数据库中的数字类型可以不用单引号括起来。"></a>（更新）数据库中的数字类型可以不用单引号括起来。</h3><h3 id="但是，绝对不能使用双引号。"><a href="#但是，绝对不能使用双引号。" class="headerlink" title="但是，绝对不能使用双引号。"></a>但是，绝对不能使用双引号。</h3><h1 id="二、使用post方式的ajax"><a href="#二、使用post方式的ajax" class="headerlink" title="二、使用post方式的ajax"></a>二、使用post方式的ajax</h1><p>我们使用get方式的时候，直接这样就可以了：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.open(&quot;get&quot;,&quot;.&#x2F;validate.php&quot;,true);</span><br><span class="line">xmlhttp.send();</span><br><span class="line">xmlhttp.onreadystatechange &#x3D; function()&#123;</span><br><span class="line">            if(this.readyState &#x3D;&#x3D; 4 &amp;&amp; this.status &#x3D;&#x3D; 200)&#123;</span><br><span class="line">                var obj &#x3D; JSON.parse(this.responseText);</span><br><span class="line">                alert(obj.user+&quot;你好，注册成功！&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br></pre></td></tr></table></figure>
-<p>但是如果使用的是post方式的ajax，那么必须指明请求头：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var xmlhttp &#x3D; new XMLHttpRequest();</span><br><span class="line">       xmlhttp.open(&quot;get&quot;,&quot;.&#x2F;validate.php&quot;,true);</span><br><span class="line"></span><br><span class="line">       xmlhttp.setRequestHeader(&#39;content-type&#39;,&#39;application&#x2F;x-www-form-urlencoded&#39;);</span><br><span class="line">       </span><br><span class="line">       xmlhttp.send(&quot;type&#x3D;signin&amp;user&#x3D;&quot;+uv+&quot;&amp;pswd&#x3D;&quot;+pv);</span><br><span class="line"></span><br><span class="line">       xmlhttp.onreadystatechange &#x3D; function()&#123;</span><br><span class="line">           if(this.readyState &#x3D;&#x3D; 4 &amp;&amp; this.status &#x3D;&#x3D; 200)&#123;</span><br><span class="line">               var obj &#x3D; JSON.parse(this.responseText);</span><br><span class="line">               alert(obj.user+&quot;你好，注册成功！&quot;);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;;</span><br></pre></td></tr></table></figure>
-<p><b>也就是代码中的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.setRequestHeader(&#39;content-type&#39;,&#39;application&#x2F;x-www-form-urlencoded&#39;);</span><br></pre></td></tr></table></figure>
-<p>不然的话，会一直提示$_POST数组的下标不存在！<br></b></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/24/servlet%E5%AE%9E%E7%8E%B0%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Luffy">
-      <meta itemprop="description" content="This is my blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/24/servlet%E5%AE%9E%E7%8E%B0%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/" class="post-title-link" itemprop="url">servlet实现的三种方式</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-05-24 17:08:00 / Modified: 20:03:27" itemprop="dateCreated datePublished" datetime="2020-05-24T17:08:00+08:00">2020-05-24</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>要想使用servlet，可以通过以下三种方式。</p>
-<h1 id="一、实现Servlet接口"><a href="#一、实现Servlet接口" class="headerlink" title="一、实现Servlet接口"></a>一、实现Servlet接口</h1><p>接口所在包：javax.servlet.Servlet</p>
-<h2 id="需要实现的函数"><a href="#需要实现的函数" class="headerlink" title="需要实现的函数"></a>需要实现的函数</h2><h4 id="1）init-ServletConfig-config"><a href="#1）init-ServletConfig-config" class="headerlink" title="1）init(ServletConfig config)"></a>1）init(ServletConfig config)</h4><h4 id="2）getServletInfo"><a href="#2）getServletInfo" class="headerlink" title="2）getServletInfo()"></a>2）getServletInfo()</h4><h4 id="3）getServletConfig"><a href="#3）getServletConfig" class="headerlink" title="3）getServletConfig()"></a>3）getServletConfig()</h4><h4 id="4）service-ServletRequest-req-ServletResponse-res"><a href="#4）service-ServletRequest-req-ServletResponse-res" class="headerlink" title="4）service(ServletRequest req, ServletResponse res)"></a>4）service(ServletRequest req, ServletResponse res)</h4><h4 id="5）destroy"><a href="#5）destroy" class="headerlink" title="5）destroy()"></a>5）destroy()</h4><p>实现代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">package luffy18d.github.io;</span><br><span class="line"></span><br><span class="line">import javax.servlet.*;</span><br><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">public class Aservlet implements Servlet &#123;</span><br><span class="line">	  private ServletConfig config;</span><br><span class="line">    @Override</span><br><span class="line">    public void init(ServletConfig servletConfig) throws ServletException &#123;</span><br><span class="line">        System.out.println(&quot;init....&quot;);</span><br><span class="line">        this.config &#x3D; servletConfig;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public ServletConfig getServletConfig() &#123;</span><br><span class="line">        System.out.println(&quot;getServletConfig....&quot;);</span><br><span class="line">        return this.config;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException &#123;</span><br><span class="line">        System.out.println(&quot;service....&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String getServletInfo() &#123;</span><br><span class="line">        System.out.println(&quot;getServletInfo....&quot;);</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void destroy() &#123;</span><br><span class="line">        System.out.println(&quot;destroy....&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>需要注意的是：其中包含servlet的三个生命周期函数init、service和destroy。<br><br>这三个方法都不是手动调用，而是tomcat服务器帮我们调用。<br><br>其中init方法在servlet被创建之后马上调用，service方法每访问一次servlet就会执行一次，destroy方法在servlet被销毁之前被调用。<br><br>getServletInfo方法可以写一些servlet的相关信息，供别人或自己调用，但是意义不大。<br><br>getServletConfig方法可以获取一些配置信息，比如web.xml里定义的参数（parameters）。该方法返回值为ServletConfig类型，init方法的参数也是ServletConfig类型的，因此，getServletConfig方法的返回值，可以通过init方法，借由一个成员变量给出。</p>
-<h1 id="二、继承GenericServlet类"><a href="#二、继承GenericServlet类" class="headerlink" title="二、继承GenericServlet类"></a>二、继承GenericServlet类</h1><p>抽象类所在包：javax.servlet.GenericServlet<br><br>该类在Servlet接口的基础上，实现了除service方法之外的其他四个方法，为程序提供了便利，比如我们不需要手动增加config成员变量。</p>
-<blockquote>
-<p>getServletConfig方法的返回值，可以通过init方法，借由一个成员变量给出。<br><br>但是使用GenericServlet，就没有这个顾虑了。</p>
-</blockquote>
-<h1 id="三、继承HttpServlet类"><a href="#三、继承HttpServlet类" class="headerlink" title="三、继承HttpServlet类"></a>三、继承HttpServlet类</h1><p>抽象类所在包：javax.servlet.http.HttpServlet<br>只需要实现doGet方法和doPost方法，实现实例参考上一篇博客。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/24/servlet%E4%B9%8B%E7%BD%91%E7%AB%99%E8%AE%BF%E9%97%AE%E9%87%8F%E7%BB%9F%E8%AE%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Luffy">
-      <meta itemprop="description" content="This is my blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/24/servlet%E4%B9%8B%E7%BD%91%E7%AB%99%E8%AE%BF%E9%97%AE%E9%87%8F%E7%BB%9F%E8%AE%A1/" class="post-title-link" itemprop="url">servlet之网站访问量统计</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-05-24 16:13:34 / Modified: 20:05:15" itemprop="dateCreated datePublished" datetime="2020-05-24T16:13:34+08:00">2020-05-24</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>这是我学习javaweb中的servlet所做的小程序（其实也是教程里面的例子）。</p>
-<h1 id="talk-is-cheap，show-you-the-code"><a href="#talk-is-cheap，show-you-the-code" class="headerlink" title="talk is cheap，show you the code"></a>talk is cheap，show you the code</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">package luffy18d.github.io;</span><br><span class="line"></span><br><span class="line">import javax.servlet.ServletContext;</span><br><span class="line">import javax.servlet.ServletException;</span><br><span class="line">import javax.servlet.http.HttpServlet;</span><br><span class="line">import javax.servlet.http.HttpServletRequest;</span><br><span class="line">import javax.servlet.http.HttpServletResponse;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.PrintWriter;</span><br><span class="line"></span><br><span class="line">public class cntServlet extends HttpServlet &#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException &#123;</span><br><span class="line">        ServletContext app &#x3D; this.getServletContext();</span><br><span class="line">        Integer count &#x3D; (Integer)app.getAttribute(&quot;count&quot;);</span><br><span class="line">        if(count &#x3D;&#x3D; null)</span><br><span class="line">        &#123;</span><br><span class="line">            app.setAttribute(&quot;count&quot;,1);</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            app.setAttribute(&quot;count&quot;,count + 1);</span><br><span class="line">        &#125;</span><br><span class="line">        PrintWriter pw &#x3D; resp.getWriter();</span><br><span class="line">        pw.print(&quot;&lt;h1&gt;&quot; + count + &quot;&lt;&#x2F;h1&gt;&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>这是web.xml中的一些相关配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;servlet&gt;</span><br><span class="line">   &lt;servlet-name&gt;cnt&lt;&#x2F;servlet-name&gt;</span><br><span class="line">   &lt;servlet-class&gt;luffy18d.github.io.cntServlet&lt;&#x2F;servlet-class&gt;</span><br><span class="line">&lt;&#x2F;servlet&gt;</span><br><span class="line">&lt;servlet-mapping&gt;</span><br><span class="line">   &lt;servlet-name&gt;cnt&lt;&#x2F;servlet-name&gt;</span><br><span class="line">   &lt;url-pattern&gt;&#x2F;cntServlet&lt;&#x2F;url-pattern&gt;</span><br><span class="line">&lt;&#x2F;servlet-mapping&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="设计思想"><a href="#设计思想" class="headerlink" title="设计思想"></a>设计思想</h1><p>要想统计网站的访问量，必须在全站范围内构建一个共同可读可写的变量。这里使用的是servlet中的ServletContext，它是全项目唯一的。用到的方法有该对象的getAttribute和setAttribute。<br><br>首先通过继承HttpServlet类来获取相关的方法，然后调用本对象的getServletContext方法来获取项目唯一的ServletContext对象。<br>然后使用ServletContext对象中的getAttribute方法获取名字为count的属性的值。<br>如果值为null，那么说明这是第一次访问，项目中还没有这个属性，就使用setAttribute方法将count置为1；如果值不为null，那么说明这不是第一次访问，同样使用setAttribute方法，设置count的值为count + 1.</p>
-<h1 id="步骤详解"><a href="#步骤详解" class="headerlink" title="步骤详解"></a>步骤详解</h1><h2 id="1、打包以及引入"><a href="#1、打包以及引入" class="headerlink" title="1、打包以及引入"></a>1、打包以及引入</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">package luffy18d.github.io;</span><br><span class="line"></span><br><span class="line">import javax.servlet.ServletContext;</span><br><span class="line">import javax.servlet.ServletException;</span><br><span class="line">import javax.servlet.http.HttpServlet;</span><br><span class="line">import javax.servlet.http.HttpServletRequest;</span><br><span class="line">import javax.servlet.http.HttpServletResponse;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.PrintWriter;</span><br></pre></td></tr></table></figure>
-<p>这个没什么好说的。</p>
-<h2 id="2、查询count属性"><a href="#2、查询count属性" class="headerlink" title="2、查询count属性"></a>2、查询count属性</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class cntServlet extends HttpServlet &#123;</span><br><span class="line">	@Override</span><br><span class="line">	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException &#123;</span><br><span class="line">        ServletContext app &#x3D; this.getServletContext();</span><br><span class="line">        Integer count &#x3D; (Integer)app.getAttribute(&quot;count&quot;);</span><br></pre></td></tr></table></figure>
-<p>因为cntServlet类继承了HttpServlet，所以相关方法都有了，我们只需要实现doGet方法即可。通过对象本身的getServletContext方法，获取ServletContext对象，然后查询count属性，因为getAttribute方法返回的是Object类型，所以要强制转换成Integer类型。</p>
-<h2 id="3、根据count的值执行不同的操作"><a href="#3、根据count的值执行不同的操作" class="headerlink" title="3、根据count的值执行不同的操作"></a>3、根据count的值执行不同的操作</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if(count &#x3D;&#x3D; null)</span><br><span class="line">&#123;</span><br><span class="line">     app.setAttribute(&quot;count&quot;,1);</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">     app.setAttribute(&quot;count&quot;,count + 1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果count为null，说明是第一次访问，使用setAttribute方法给count属性置1.<br>如过count不为null，说明不是第一次访问，使用setAttribute给count加1.</p>
-<h2 id="在浏览器中输出"><a href="#在浏览器中输出" class="headerlink" title="在浏览器中输出"></a>在浏览器中输出</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PrintWriter pw &#x3D; resp.getWriter();</span><br><span class="line">pw.print(&quot;&lt;h1&gt;&quot; + count + &quot;&lt;&#x2F;h1&gt;&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>使用response对象向浏览器输出count属性。<br><br>注：resp就是doGet参数中的HttpServletResponse类型的resp。</p>
-<h2 id="项目配置"><a href="#项目配置" class="headerlink" title="项目配置"></a>项目配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;servlet&gt;</span><br><span class="line">   &lt;servlet-name&gt;cnt&lt;&#x2F;servlet-name&gt;</span><br><span class="line">   &lt;servlet-class&gt;luffy18d.github.io.cntServlet&lt;&#x2F;servlet-class&gt;</span><br><span class="line">&lt;&#x2F;servlet&gt;</span><br><span class="line">&lt;servlet-mapping&gt;</span><br><span class="line">   &lt;servlet-name&gt;cnt&lt;&#x2F;servlet-name&gt;</span><br><span class="line">   &lt;url-pattern&gt;&#x2F;cntServlet&lt;&#x2F;url-pattern&gt;</span><br><span class="line">&lt;&#x2F;servlet-mapping&gt;</span><br></pre></td></tr></table></figure>
-<p>要设置两个标签：servlet和servlet-mapping.<br>servlet标签要定义servlet-name和servlet-class，name可以随便取，class要写完整的包名和类名。<br><br>servlet-mapping也要定义servlet-name并且值要和servlet中的name相同，这样服务器才找得到对应的servlet进行显示，url-pattern设置的是访问servlet的路径，我一般习惯项目目录之后直接跟servlet名称。<br><br>注：url-pattern必须以/开头。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/27/%E7%88%B6%E9%A1%B5%E9%9D%A2%E8%AE%BF%E9%97%AE%E5%AD%90%E9%A1%B5%E9%9D%A2%E5%86%85%E5%AE%B9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Luffy">
-      <meta itemprop="description" content="This is my blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/27/%E7%88%B6%E9%A1%B5%E9%9D%A2%E8%AE%BF%E9%97%AE%E5%AD%90%E9%A1%B5%E9%9D%A2%E5%86%85%E5%AE%B9/" class="post-title-link" itemprop="url">父页面访问子页面内容</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-04-27 20:34:29 / Modified: 21:02:41" itemprop="dateCreated datePublished" datetime="2020-04-27T20:34:29+08:00">2020-04-27</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>今天在做web系统开发的期末大作业的时候，遇到了一个应用场景。<br><br>我在网站首页中使用iframe引入了一个子页面，而且这个子页面的内容要随着我点击header中相应的栏目来改变，也就是动态修改iframe的src属性。<br><br>那么问题来了，变动的src中的内容高度不是一样的，有的很高，有的不是。那么，我如何做到iframe的高度和src指向的页面的内容高度一致呢？换句话说：如何做到iframe的高度的自适应？</p>
-<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>通过在网上查找，我发现了一种解决方案。<br><br>可以在父页面获取到iframe元素，然后设置它的高度为iframe的contentDocument对象的document.scrollHeight。<br><br>也就是下面的代码：<br></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iframe.height &#x3D; iframe.contentDocument.document.scrollHeight;</span><br></pre></td></tr></table></figure>
-<p>原以为过程应该很顺利，但是没想到浏览器报错了。<br><br><img src="/img/err.jpg" alt="错误"><br>经过调试，发现错误是从这里开始的：<br></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(iframe.contentDocument);&#x2F;&#x2F;输出null！</span><br></pre></td></tr></table></figure>
-<p>于是，我又在网上找原因，最后得到的结果是：</p>
-<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><h5 id="chrome因为跨域的问题，contentDocument-document是处于deny状态的，没有办法获取到！（基于chromium内核的浏览器都一个样）"><a href="#chrome因为跨域的问题，contentDocument-document是处于deny状态的，没有办法获取到！（基于chromium内核的浏览器都一个样）" class="headerlink" title="chrome因为跨域的问题，contentDocument.document是处于deny状态的，没有办法获取到！（基于chromium内核的浏览器都一个样）"></a>chrome因为跨域的问题，contentDocument.document是处于deny状态的，没有办法获取到！（基于chromium内核的浏览器都一个样）<br></h5><h5 id="可以通过跨域操作解决，但是网站必须在线上，或者开启一个服务，也就是说本地纯html-css-js是无法解决的！"><a href="#可以通过跨域操作解决，但是网站必须在线上，或者开启一个服务，也就是说本地纯html-css-js是无法解决的！" class="headerlink" title="可以通过跨域操作解决，但是网站必须在线上，或者开启一个服务，也就是说本地纯html+css+js是无法解决的！"></a>可以通过跨域操作解决，但是网站必须在线上，或者开启一个服务，也就是说本地纯html+css+js是无法解决的！</h5>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
-  </nav>
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
+    <script type="text/javascript">
+      const finalTextDom = document.getElementById("final-result");
+      const transTextDom = document.getElementById("trans-result");
+      const recordBtn = document.getElementById("record-btn");
+      const playBtn = document.getElementById("play-btn");
+      const recordLabel = document.getElementById("record-label");
+      const playLabel = document.getElementById("play-label");
+      const tipsEle = document.getElementById("tips");
+      const msgEle = document.getElementById("message");
+
+      // playBtn.style.display = "none";
+      let srcText = "";
+      let dstText = "";
+
+      let speech = null;
+      let recognition = null;
+      function initSpeechTool() {
+        speech = new SpeechSynthesisUtterance();
+        speech.lang = "en-US";
+        speech.rate = 1.2;
+
+        recognition = new webkitSpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = true;
+        recognition.lang = "cmn-Hans-CN";
+        recognition.onstart = function () {};
+        let finalText = "";
+        let interimText = "";
+        recognition.onresult = function (event) {
+          debugger;
+          if (event.results.length) {
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+              const item = event.results[i];
+              if (item.isFinal) {
+                finalText = item[0].transcript;
+              } else {
+                // interimText = item[0].transcript; // 识别的中间结果
+              }
+            }
+          }
+
+          if (finalText) {
+            finalTextDom.innerHTML = finalText;
+            srcText = finalText;
+            recordLabel.innerHTML = "重录";
+
+            getTranslateResult(srcText);
+            tipsEle.style.display = "none";
+            recognition.stop();
+            finalText = "";
+          }
+        };
+        recognition.onerror = function (event) {};
+        recognition.onend = function () {};
+        // recognition.start();
       }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
+      function listen() {
+        recognition.start();
+      }
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Luffy</p>
-  <div class="site-description" itemprop="description">This is my blog</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">12</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-  </nav>
-</div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2021</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Luffy</span>
-</div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
-  </div>
-
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/muse.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-  
-<script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-</body>
+      let appid = "20241107002196932"; // 百度翻译平台上获取
+      let key = "X0mUucjZr88xHeToJfFy"; // 同上
+      let salt = new Date().getTime();
+      function getTranslateResult(query) {
+        // 多个query可以用\n连接  如 query='apple\norange\nbanana\npear'
+        let from = "zh";
+        let to = "en";
+        let str1 = appid + query + salt + key;
+        let sign = MD5(str1);
+        $.ajax({
+          url: "http://api.fanyi.baidu.com/api/trans/vip/translate",
+          type: "get",
+          dataType: "jsonp",
+          data: {
+            q: query,
+            appid: appid,
+            salt: salt,
+            from: from,
+            to: to,
+            sign: sign,
+          },
+          success: function (data) {
+            console.log(data);
+            if (data.error_code) {
+              if (data.error_code === "54003") {
+                msgEle.innerHTML = "百度翻译觉得您说得太快了，休息一下吧";
+              } else {
+                msgEle.innerHTML = "数据处理中，请稍后";
+              }
+              tipsEle.classList.add("error");
+              tipsEle.classList.remove("success");
+              tipsEle.style.display = "block";
+              srcText = "";
+              dstText = "";
+              recordLabel.innerHTML = "开始";
+              finalTextDom.innerHTML = "";
+              transTextDom.innerHTML = "";
+              setTimeout(() => {
+                tipsEle.style.display = "none";
+              }, 5000);
+            } else {
+              dstText = data.trans_result[0].dst;
+              // playBtn.style.display = "block";
+              transTextDom.innerHTML = dstText;
+              // speech.text = dstText;
+              // speechSynthesis.speak(speech);
+            }
+            // {
+            //   "from": "en",
+            //   "to": "zh",
+            //   "trans_result": [
+            //     {
+            //       "src": "apple is delicious. onepiece is interesting",
+            //       "dst": "苹果很好吃。有一件很有趣"
+            //     }
+            //   ]
+            // }
+          },
+        });
+      }
+      function speakText(text) {
+        speech.text = text;
+        speechSynthesis.speak(speech);
+        recordLabel.innerHTML = "开始";
+      }
+    </script>
+    <script>
+      // 主程序
+      initSpeechTool();
+      recordBtn.addEventListener("click", function () {
+        listen();
+        msgEle.innerHTML = "您说，我在听...  ";
+        tipsEle.classList.remove("error");
+        tipsEle.classList.add("success");
+        tipsEle.style.display = "block";
+      });
+      playBtn.addEventListener("click", function () {
+        speakText(dstText);
+      });
+    </script>
+  </body>
 </html>
